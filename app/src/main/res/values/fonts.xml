@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="montserrat_regular">fonts/montserrat-regular.otf</string>
+    <string name="montserrat_light">fonts/montserrat-light.otf</string>
+    <string name="montserrat_bold">fonts/montserrat-bold.otf</string>
+</resources>

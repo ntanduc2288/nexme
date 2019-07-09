@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">nexme</string>
     <string name="title_activity_maps">Map</string>
+    <string name="skip">Skip</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_up_with_phone_mobile">Sign up with Phone/Mobile</string>
+    <string name="google">Google</string>
+    <string name="facebook">Facebook</string>
+    <string name="create_your_account">Create your account</string>
 </resources>

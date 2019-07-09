@@ -41,6 +41,8 @@ dependencies {
     implementation "com.jaychang:simpleauth-google:$simpleAuthVersion"
 
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta2'
 }
 
 android.defaultConfig.manifestPlaceholders = [

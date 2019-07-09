@@ -1,6 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
 
-</RelativeLayout>
+    <ImageView android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:src="@drawable/bg_onboarding"
+               android:scaleType="centerCrop"
+               android:id="@+id/imageView"/>
+
+    <View android:layout_width="match_parent" android:layout_height="match_parent"
+          android:background="#66000000"/>
+    <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/skip"
+            style="@style/Skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSkip"
+            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/space_small" android:layout_marginRight="@dimen/space_small"
+            android:layout_marginEnd="10dp"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginTop="132dp"
+            app:layout_constraintTop_toTopOf="@+id/imageView" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
+            android:gravity="bottom"
+            android:layout_marginStart="8dp">
+
+        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                   android:src="@mipmap/ic_launcher"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@string/app_name"
+                  android:textAppearance="@style/Text_Style.OnBoarding_Logo"
+        />
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="@dimen/margin_extra_large" app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="bottom"
+            android:layout_marginStart="@dimen/margin_extra_large" android:layout_marginBottom="@dimen/margin_large"
+            android:id="@+id/linearLayout2" android:layout_marginRight="@dimen/margin_extra_large"
+            android:layout_marginEnd="@dimen/margin_extra_large">
+
+        <androidx.appcompat.widget.AppCompatTextView android:layout_width="wrap_content"
+                                                     android:layout_height="wrap_content"
+                                                     style="@style/Text_Style.Light"
+                                                     android:text="@string/already_have_an_account"
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView android:layout_width="wrap_content"
+                                                     android:id="@+id/btnLogin"
+                                                     android:layout_marginLeft="@dimen/margin_tiny"
+                                                     style="@style/Text_Style"
+                                                     android:layout_height="wrap_content"
+                                                     android:text="@string/log_in"
+                                                     android:layout_marginStart="@dimen/margin_tiny"/>
+
+    </LinearLayout>
+    <Button
+            android:text="@string/sign_up_with_phone_mobile"
+            style="@style/SignUp_Phone_Button_Style"
+            android:layout_width="0dp"
+            android:id="@+id/btnSigUpWithPhone" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_extra_large"
+            android:layout_marginRight="@dimen/margin_extra_large" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="@dimen/margin_extra_large" android:layout_marginStart="@dimen/margin_extra_large"
+            android:layout_marginBottom="@dimen/margin_large"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/margin_extra_large" android:layout_marginRight="@dimen/margin_extra_large"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="@dimen/margin_extra_large"
+            android:layout_marginStart="@dimen/margin_extra_large" android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnSigUpWithPhone" app:layout_constraintHorizontal_bias="0.483"
+            android:id="@+id/linearLayout3">
+
+        <Button
+                android:text="@string/google"
+                style="@style/Google_Button_Style"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginRight="@dimen/margin_small"
+                android:id="@+id/btnGoogle" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/margin_small"/>
+
+        <Button
+                android:text="@string/facebook"
+                style="@style/Facebook_Button_Style"
+                android:layout_width="0dp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_weight="1"
+                android:id="@+id/btnFacebook" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginLeft="@dimen/margin_small"/>
+    </LinearLayout>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="@dimen/create_account_text_margin"
+            android:layout_marginRight="@dimen/create_account_text_margin"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="@dimen/create_account_text_margin"
+            android:layout_marginStart="@dimen/create_account_text_margin" android:layout_marginBottom="@dimen/margin_medium"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout3">
+
+        <View android:layout_width="0dp" android:layout_height="1dp"
+              android:layout_weight="1"
+              android:background="@color/white"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@string/create_your_account"
+                  android:layout_marginStart="@dimen/margin_small"
+                  android:layout_marginEnd="@dimen/margin_small"
+                  style="@style/Text_Style"/>
+
+        <View android:layout_width="0dp"
+              android:layout_weight="1" android:layout_height="1dp"
+              android:background="@color/white"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

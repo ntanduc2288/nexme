@@ -29,12 +29,21 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
+    //noinspection GradleCompatible
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    // https://github.com/jaychang0917/SimpleAuth?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=5994
     implementation "com.jaychang:simpleauth:$simpleAuthVersion"
     implementation "com.jaychang:simpleauth-facebook:$simpleAuthVersion"
     implementation "com.jaychang:simpleauth-google:$simpleAuthVersion"
+
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 }
+
+android.defaultConfig.manifestPlaceholders = [
+        facebookAppId        : "your facebook app id",
+        googleWebClientId    : "your google web client id"
+]

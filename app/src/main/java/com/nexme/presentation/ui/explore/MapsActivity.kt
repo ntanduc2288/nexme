@@ -1,4 +1,4 @@
-package com.nexme.presentation.ui
+package com.nexme.presentation.ui.explore
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

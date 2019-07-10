@@ -12,7 +12,7 @@
                android:id="@+id/imageView"/>
 
     <View android:layout_width="match_parent" android:layout_height="match_parent"
-          android:background="#66000000"/>
+          android:background="@color/overlay_color"/>
     <androidx.appcompat.widget.AppCompatButton
             android:text="@string/skip"
             style="@style/Skip"

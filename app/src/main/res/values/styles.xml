@@ -14,15 +14,25 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="EditText_Style" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="fontPath">@string/montserrat_regular</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:layout_height">@dimen/edittext_height</item>
+        <item name="android:background">@drawable/bg_corner_white</item>
+        <item name="android:padding">@dimen/margin_small</item>
+    </style>
+
     <style name="Text_Style.Light">
         <item name="fontPath">@string/montserrat_light</item>
     </style>
 
     <style name="Button_Style" parent="android:Widget.Button">
-        <item name="android:layout_height">42dp</item>
+        <item name="android:layout_height">@dimen/edittext_height</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:foreground">?selectableItemBackground</item>
         <item name="android:textColor">@color/default_text_color</item>
+        <item name="android:padding">@dimen/margin_small</item>
     </style>
 
     <style name="Google_Button_Style" parent="Button_Style">
@@ -50,6 +60,20 @@
 
     <style name="Text_Style.OnBoarding_Logo">
         <item name="android:textSize">@dimen/extra_large</item>
+    </style>
+
+    <style name="Theme.Pattern.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--<item name="colorAccent">@color/core_action_dark</item>-->
+    </style>
+
+    <style name="Back_Button_Style">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:src">@drawable/ic_chevron_left_garage_disabled_22dp</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_marginLeft">@dimen/margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/margin_medium</item>
+        <item name="android:foreground">?selectableItemBackground</item>
     </style>
 
 </resources>

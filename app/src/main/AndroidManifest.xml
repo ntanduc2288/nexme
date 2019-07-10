@@ -30,7 +30,9 @@
                 android:name="com.google.android.geo.API_KEY"
                 android:value="@string/google_maps_key"/>
 
-        <activity android:name=".presentation.ui.welcome.WelcomeActivity">
+        <activity android:name=".presentation.ui.welcome.WelcomeActivity"
+                  android:screenOrientation="portrait"
+        >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -40,6 +42,7 @@
 
         <activity
                 android:name=".presentation.ui.explore.MapsActivity"
+                android:screenOrientation="portrait"
                 android:label="@string/title_activity_maps">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -48,7 +51,10 @@
             </intent-filter>-->
         </activity>
 
-        <activity android:name=".presentation.ui.onboarding.OnboardingActivity">
+        <activity android:name=".presentation.ui.onboarding.OnboardingActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+        >
         </activity>
 
     </application>

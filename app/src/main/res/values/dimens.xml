@@ -12,4 +12,5 @@
     <dimen name="margin_large">32dp</dimen>
     <dimen name="margin_extra_large">42dp</dimen>
     <dimen name="create_account_text_margin">60dp</dimen>
+    <dimen name="edittext_height">42dp</dimen>
 </resources>

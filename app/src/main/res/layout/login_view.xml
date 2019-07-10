@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+    <ImageView android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:src="@drawable/bg_onboarding"
+               android:scaleType="centerCrop"
+               android:id="@+id/imageView"/>
+
+    <View android:layout_width="match_parent" android:layout_height="match_parent"
+          android:background="@color/overlay_color"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:text="@string/skip"
+            style="@style/Skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btnSkip"
+            android:layout_marginTop="@dimen/space_small" android:layout_marginRight="@dimen/space_small"
+            android:layout_marginEnd="10dp" android:layout_alignParentEnd="true"/>
+
+    <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnBack"
+            style="@style/Back_Button_Style"
+    />
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_below="@+id/btnBack"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/margin_medium"
+                android:layout_marginRight="@dimen/margin_medium"
+                android:layout_marginTop="50dp"
+        >
+
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/Text_Style"
+                      android:text="@string/email_address"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_marginTop="@dimen/margin_small"
+                    style="@style/EditText_Style"
+                    android:id="@+id/edtEmail"
+                    android:inputType="textEmailAddress"
+                    android:hint="@string/mr_hourse_nexme_com"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/Text_Style"
+                      android:layout_marginTop="@dimen/margin_medium"
+                      android:text="@string/password"/>
+
+            <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_marginTop="@dimen/margin_small"
+                    style="@style/EditText_Style"
+                    android:id="@+id/edtPassword"
+                    android:gravity="center_vertical"
+                    android:inputType="textPassword"
+                    android:hint="@string/password_hint"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text_Style.Light"
+                    android:id="@+id/lblForgotPassword"
+                    android:text="@string/forgot_password"
+            />
+
+            <RelativeLayout
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="match_parent"
+                        style="@style/SignUp_Phone_Button_Style"
+                        android:text="@string/log_in"
+                        android:id="@+id/btnLogin"
+                        android:layout_marginLeft="@dimen/margin_large"
+                        android:layout_marginRight="@dimen/margin_large"
+                />
+
+                <LinearLayout
+                        android:layout_below="@+id/btnLogin"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="bottom"
+                        android:id="@+id/linearLayout2"
+                        android:layout_marginTop="@dimen/margin_medium"
+                >
+
+                    <androidx.appcompat.widget.AppCompatTextView android:layout_width="wrap_content"
+                                                                 android:layout_height="wrap_content"
+                                                                 style="@style/Text_Style.Light"
+                                                                 android:text="@string/need_an_account"
+                    />
+
+                    <androidx.appcompat.widget.AppCompatTextView android:layout_width="wrap_content"
+                                                                 android:id="@+id/btnSignUp"
+                                                                 android:layout_marginLeft="@dimen/margin_tiny"
+                                                                 style="@style/Text_Style"
+                                                                 android:layout_height="wrap_content"
+                                                                 android:text="@string/sign_up"
+                                                                 android:layout_marginStart="@dimen/margin_tiny"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

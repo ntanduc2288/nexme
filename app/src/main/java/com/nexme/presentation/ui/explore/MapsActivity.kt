@@ -18,15 +18,15 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        // Obtain the SupportMapFragment and get notified when the mapping is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
 
     /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
+     * Manipulates the mapping once available.
+     * This callback is triggered when the mapping is ready to be used.
      * This is where we can add markers or lines, add listeners or move the camera. In this case,
      * we just add a marker near Sydney, Australia.
      * If Google Play services is not installed on the device, the user will be prompted to install

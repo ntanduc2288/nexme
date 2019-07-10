@@ -60,7 +60,7 @@ abstract class BaseFragment : Fragment() {
     private fun getExistingDialog(): DialogFragment? {
         if (!isAdded) return null
 
-        val manager = childFragmentManager ?: return null
+        val manager = childFragmentManager
 
         val dialog = manager
             .findFragmentByTag(PROGRESS_DIALOG_TAG) as DialogFragment?

@@ -13,6 +13,7 @@ import com.nexme.presentation.ui.BaseViewModel
 import com.nexme.presentation.ui.onboarding.login.UserObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 class OnboardingViewModel: BaseViewModel() {
 
@@ -21,6 +22,25 @@ class OnboardingViewModel: BaseViewModel() {
 
     fun onGoogleClicked(context: Context){
         showToast("Coming soon")
+
+        val scopes = Arrays.asList(
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.upload"
+        )
+        com.jaychang.sa.google.SimpleAuth.connectGoogle(scopes, object: AuthCallback{
+            override fun onSuccess(socialUser: SocialUser?) {
+                showToast("Success. " + socialUser.toString())
+            }
+
+            override fun onError(error: Throwable?) {
+                showToast(error?.message ?: "Error")
+            }
+
+            override fun onCancel() {
+                showToast("Canceled")
+            }
+
+        })
     }
 
     fun onFacebookClicked(context: Context){

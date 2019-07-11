@@ -35,7 +35,12 @@ class OnBoardingFragment: BaseLiveDataFragment() {
 
     override fun setupViews() {
         btnLogin.setOnClickListener { openLoginPage() }
-        btnGoogle.setOnClickListener { onboardingViewModel.onGoogleClicked(context!!) }
+        btnGoogle.setOnClickListener {
+
+//            onboardingViewModel.onGoogleClicked(context!!)
+            (activity as OnboardingActivity).gPlusSignIn()
+
+        }
         btnFacebook.setOnClickListener { onboardingViewModel.onFacebookClicked(context!!) }
         btnSigUpWithPhone.setOnClickListener { onboardingViewModel.onSignUpWithPhoneClicked() }
         btnSkip.setOnClickListener { openHomePage() }

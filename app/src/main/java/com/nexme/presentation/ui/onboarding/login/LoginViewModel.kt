@@ -3,6 +3,7 @@ package com.nexme.presentation.ui.onboarding.login
 import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import com.nexme.BuildConfig
 import com.nexme.domain.nexme.login.UserInteractor
 import com.nexme.domain.nexme.login.UserInteractorImpl
 import com.nexme.presentation.ui.BaseViewModel
@@ -16,7 +17,7 @@ class LoginViewModel: BaseViewModel() {
     @SuppressLint("CheckResult")
     fun onLoginClicked(context: Context, password: String, uid: String){
         showProgressDialog()
-        userInteractor.login(context, password, uid)
+        userInteractor.login(context, password, uid, !BuildConfig.DEBUG)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({userObject -> loginSuccessfully(userObject)  }, {error -> errorOccurs(error) })

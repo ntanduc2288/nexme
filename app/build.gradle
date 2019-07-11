@@ -57,6 +57,11 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
 
+    implementation 'com.jaychang:simpleauth:2.1.4'
+    // if you want to use facebook auth
+    implementation 'com.jaychang:simpleauth-facebook:2.1.4'
+    // if you want to use google auth
+    implementation 'com.jaychang:simpleauth-google:2.1.4'
 }
 
 android.defaultConfig.manifestPlaceholders = [

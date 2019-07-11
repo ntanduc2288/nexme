@@ -27,9 +27,29 @@ class UserInteractorImpl : UserInteractor {
             .doOnNext { cacheUserData(it) }
     }
 
+    override fun loginSocial(context: Context, provider: String, accessToken: String, isProd: Boolean): Observable<UserObject> {
+        val userAgent = Api.getUserAgent(context)
+        return Observable.just(initializeSocialUserEntity(provider, accessToken))
+            .flatMap { loginRequestEntity -> Api.nexmeUserServicesDotNet.login(userAgent, loginRequestEntity) }
+            .map { initializeSocialUserLoginEntity(isProd, it.email)  }
+            .flatMap { Api.nexmeUserServices.updateUILogin(userAgent, it.first, it.second) }
+            .map { loginResponse: LoginResponseEntity -> mapping(loginResponse) }
+            .doOnNext { cacheUserData(it) }
+    }
+
     private fun initializeUserEntity(password: String, uid: String): LoginRequestEntity {
         val userEntity = UserEntity("email", password, uid)
         return LoginRequestEntity(userEntity)
+    }
+
+    private fun initializeSocialUserEntity(provider: String, accessToken: String): LoginRequestEntity {
+        val userEntity = UserEntity(provider)
+        return LoginRequestEntity(userEntity, accessToken)
+    }
+
+    private fun initializeSocialUserLoginEntity(isProd: Boolean, uid: String): Pair<String, UserLoginEntity> {
+        val userLoginEntity = UserLoginEntity(DeviceLoginEntity("noToken", isProd))
+        return Pair(uid, userLoginEntity)
     }
 
     private fun cacheUserData(userObject: UserObject) {

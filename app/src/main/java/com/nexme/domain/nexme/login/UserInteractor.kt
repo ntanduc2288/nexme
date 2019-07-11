@@ -6,4 +6,5 @@ import io.reactivex.Observable
 
 interface UserInteractor {
     fun login(context: Context, password: String, email: String, isProd: Boolean): Observable<UserObject>
+    fun loginSocial(context: Context, provider: String, accessToken: String, isProd: Boolean): Observable<UserObject>
 }

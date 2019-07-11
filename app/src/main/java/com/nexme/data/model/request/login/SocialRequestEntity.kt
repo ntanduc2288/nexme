@@ -1,12 +1,11 @@
 package com.nexme.data.model.request.login
 
-import com.facebook.AccessToken
 import com.google.gson.annotations.SerializedName
 
-class LoginRequestEntity(
+class SocialRequestEntity {
     @SerializedName("user")
-    var user: UserEntity,
+    var userEntity: UserEntity? = null
+
     @SerializedName("accessToken")
     var accessToken: String? = null
-
-)
+}

@@ -64,7 +64,12 @@ dependencies {
     implementation 'com.jaychang:simpleauth-google:2.1.4'
 }
 
+//android.defaultConfig.manifestPlaceholders = [
+//        facebookAppId        : "1935916413361031",
+//        googleWebClientId    : "1:294779851983:ios:4f5a33a3f375c7e9"
+//]
+
 android.defaultConfig.manifestPlaceholders = [
-        facebookAppId        : "1935916413361031",
+        facebookAppId        : "667309397075972", //Personal account -> should be replaced by official appID
         googleWebClientId    : "1:294779851983:ios:4f5a33a3f375c7e9"
 ]

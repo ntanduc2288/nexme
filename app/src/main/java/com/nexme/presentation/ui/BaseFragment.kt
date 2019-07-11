@@ -33,13 +33,6 @@ abstract class BaseFragment : Fragment() {
             return
         }
 
-        if (activity is BaseActivity) {
-            val activity = activity as BaseActivity?
-            if (!activity!!.isActive) {
-                return
-            }
-        }
-
         val dialog: ProgressDialogFragment
         if (messageId > 0) {
             dialog = ProgressDialogFragment.newInstance(messageId, cancelable)
@@ -48,7 +41,6 @@ abstract class BaseFragment : Fragment() {
         }
         mCurrentDialog = WeakReference(dialog)
         dialog.isCancelable = cancelable
-//        dialog.setOnDismissListener(this)
         dialog.show(childFragmentManager, tag)
     }
 

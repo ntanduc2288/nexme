@@ -62,6 +62,8 @@ dependencies {
     implementation 'com.jaychang:simpleauth-facebook:2.1.4'
     // if you want to use google auth
     implementation 'com.jaychang:simpleauth-google:2.1.4'
+
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
 }
 
 //android.defaultConfig.manifestPlaceholders = [
@@ -71,5 +73,5 @@ dependencies {
 
 android.defaultConfig.manifestPlaceholders = [
         facebookAppId        : "667309397075972", //Personal account -> should be replaced by official appID
-        googleWebClientId    : "1:294779851983:ios:4f5a33a3f375c7e9"
+        googleWebClientId    : "294779851983:ios:4f5a33a3f375c7e9"
 ]

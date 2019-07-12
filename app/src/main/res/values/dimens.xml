@@ -3,6 +3,7 @@
     <dimen name="radius_corner">200dp</dimen>
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
     <dimen name="space_medium">22dp</dimen>
     <dimen name="extra_large">35sp</dimen>
     <dimen name="space_small">10dp</dimen>

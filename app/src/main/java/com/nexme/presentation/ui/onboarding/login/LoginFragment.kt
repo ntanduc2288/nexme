@@ -41,7 +41,7 @@ class LoginFragment: BaseLiveDataFragment() {
 
         btnSkip.setOnClickListener { openHomePage() }
         btnBack.setOnClickListener { getCurrentActivity().onBackPressed() }
-        btnLogin.setOnClickListener { loginViewModel.onLoginClicked(context!!, edtPassword.text.toString().trim(), edtEmail.text.toString().trim()) }
+        btnLogin.setOnClickListener { loginViewModel.onLoginClicked(edtPassword.text.toString().trim(), edtEmail.text.toString().trim()) }
 
     }
 

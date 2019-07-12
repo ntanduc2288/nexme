@@ -20,7 +20,6 @@ class SignupCodeViewModel : BaseViewModel() {
     fun onNextClicked(verificationCode: String) {
         showProgressDialog()
         userInteractor.checkPhoneVerification(
-            App.applicationContext(),
             authyApiKey,
             signupObject?.countryCode ?: "",
             signupObject?.phoneNumber ?: "",

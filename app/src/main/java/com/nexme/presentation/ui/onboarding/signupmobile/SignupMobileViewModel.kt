@@ -25,7 +25,7 @@ class SignupMobileViewModel: BaseViewModel() {
         showProgressDialog()
         this.countryCode = countryCode
         this.phoneNumber = phoneNumber
-        userInteractor.requestPhoneVerification(App.applicationContext(), authyApiKey, countryCode, phoneNumber)
+        userInteractor.requestPhoneVerification(authyApiKey, countryCode, phoneNumber)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ phoneResponseEntity -> verifySuccessfully(phoneResponseEntity) }, { error -> errorOccurs(error) })

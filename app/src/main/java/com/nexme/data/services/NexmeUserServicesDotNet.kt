@@ -11,6 +11,6 @@ import retrofit2.http.*
 interface NexmeUserServicesDotNet {
     @POST("Account/login")
     @Headers( CLIENT_TOKEN)
-    fun login(@Header(USER_AGENT) userAgent: String, @Body userRequestEntity: LoginRequestEntity): Observable<LoginResponseEntity>
+    fun login(@Body userRequestEntity: LoginRequestEntity): Observable<LoginResponseEntity>
 
 }

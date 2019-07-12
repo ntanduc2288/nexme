@@ -19,9 +19,9 @@ class LoginViewModel: BaseViewModel() {
     val loginLiveData: MutableLiveData<UserObject> by lazy { MutableLiveData<UserObject>() }
 
     @SuppressLint("CheckResult")
-    fun onLoginClicked(context: Context, password: String, uid: String){
+    fun onLoginClicked(password: String, uid: String){
         showProgressDialog()
-        userInteractor.login(context, password, uid, !BuildConfig.DEBUG)
+        userInteractor.login(password, uid, !BuildConfig.DEBUG)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({userObject -> loginSuccessfully(userObject)  }, {error -> errorOccurs(error) })

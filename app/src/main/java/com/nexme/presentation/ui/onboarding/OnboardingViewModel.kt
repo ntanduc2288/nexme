@@ -53,18 +53,18 @@ class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedL
 
         } else {
             val accessToken = googleAccount.idToken
-            loginSocial(context, "google", accessToken!!)
+            loginSocial("google", accessToken!!)
         }
     }
 
-    fun onAuthenGoogleSuccessful(context: Context, accessToken: String, email: String){
-        loginSocial(context, "google", accessToken)
+    fun onAuthenGoogleSuccessful(accessToken: String, email: String){
+        loginSocial("google", accessToken)
     }
 
-    fun onFacebookClicked(context: Context) {
+    fun onFacebookClicked() {
         SimpleAuth.connectFacebook(emptyArray<String>().toList(), object : AuthCallback {
             override fun onSuccess(socialUser: SocialUser) {
-                loginSocial(context, "facebook", socialUser.accessToken)
+                loginSocial("facebook", socialUser.accessToken)
             }
 
             override fun onError(error: Throwable?) {
@@ -83,9 +83,9 @@ class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedL
     }
 
     @SuppressLint("CheckResult")
-    private fun loginSocial(context: Context, provider: String, accessToken: String) {
+    private fun loginSocial(provider: String, accessToken: String) {
         showProgressDialog()
-        userInteractor.loginSocial(context, provider, accessToken, !BuildConfig.DEBUG)
+        userInteractor.loginSocial(provider, accessToken, !BuildConfig.DEBUG)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ userObject -> loginSuccessfully(userObject) }, { error -> errorOccurs(error) })

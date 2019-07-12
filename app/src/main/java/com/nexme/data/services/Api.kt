@@ -79,7 +79,7 @@ class AddHeaderInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val builder = chain.request().newBuilder()
-        builder.addHeader(Api.USER_AGENT, Api.getUserAgent(App.applicationContext()))
+        builder.header(Api.USER_AGENT, Api.getUserAgent(App.applicationContext()))
 
         return chain.proceed(builder.build())
     }

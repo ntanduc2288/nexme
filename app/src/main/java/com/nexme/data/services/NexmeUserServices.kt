@@ -13,11 +13,10 @@ import retrofit2.http.*
 interface NexmeUserServices {
     @GET("users/check")
     @Headers( CLIENT_TOKEN)
-//    fun check(@Header(USER_AGENT) userAgent: String, @Header(UID) uid: String): Observable<Boolean>
     fun check(@Header(UID) uid: String): Observable<Boolean>
 
     @PUT("users/0")
     @Headers( CLIENT_TOKEN)
-    fun updateUILogin(@Header(USER_AGENT) userAgent: String, @Header(UID) uid: String, @Body userLoginEntity: UserLoginEntity): Observable<LoginResponseEntity>
+    fun updateUILogin(@Header(UID) uid: String, @Body userLoginEntity: UserLoginEntity): Observable<LoginResponseEntity>
 
 }

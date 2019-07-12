@@ -15,48 +15,40 @@ import io.reactivex.Observable
 
 class UserInteractorImpl : UserInteractor {
 
-    override fun login(context: Context, password: String, uid: String, isProd: Boolean): Observable<UserObject> {
-
-        val userAgent = Api.getUserAgent(context)
-
+    override fun login(password: String, uid: String, isProd: Boolean): Observable<UserObject> {
         return Api.nexmeUserServices.check(uid)
             .flatMap { isUidExist -> Observable.just(initializeUserEntity(password, uid)) }
-            .flatMap { loginRequestEntity -> Api.nexmeUserServicesDotNet.login(userAgent, loginRequestEntity) }
+            .flatMap { loginRequestEntity -> Api.nexmeUserServicesDotNet.login(loginRequestEntity) }
             .map { UserLoginEntity(DeviceLoginEntity("noToken", isProd))  }
-            .flatMap { Api.nexmeUserServices.updateUILogin(userAgent, uid, it) }
+            .flatMap { Api.nexmeUserServices.updateUILogin(uid, it) }
             .map { loginResponse: LoginResponseEntity -> mapping(loginResponse) }
             .doOnNext { cacheUserData(it) }
     }
 
-    override fun loginSocial(context: Context, provider: String, accessToken: String, isProd: Boolean): Observable<UserObject> {
-        val userAgent = Api.getUserAgent(context)
+    override fun loginSocial(provider: String, accessToken: String, isProd: Boolean): Observable<UserObject> {
         return Observable.just(initializeSocialUserEntity(provider, accessToken))
-            .flatMap { loginRequestEntity -> Api.nexmeUserServicesDotNet.login(userAgent, loginRequestEntity) }
+            .flatMap { loginRequestEntity -> Api.nexmeUserServicesDotNet.login(loginRequestEntity) }
             .map { initializeSocialUserLoginEntity(isProd, it.email)  }
-            .flatMap { Api.nexmeUserServices.updateUILogin(userAgent, it.first, it.second) }
+            .flatMap { Api.nexmeUserServices.updateUILogin(it.first, it.second) }
             .map { loginResponse: LoginResponseEntity -> mapping(loginResponse) }
             .doOnNext { cacheUserData(it) }
     }
 
     override fun requestPhoneVerification(
-        context: Context,
         apiKey: String,
         countryCode: String,
         phoneNumber: String
     ): Observable<PhoneResponseEntity> {
-        val userAgent = Api.getUserAgent(context)
-        return Api.twilioService.requestPhoneVerify(userAgent, apiKey, "sms", countryCode, phoneNumber)
+        return Api.twilioService.requestPhoneVerify(apiKey, "sms", countryCode, phoneNumber)
     }
 
     override fun checkPhoneVerification(
-        context: Context,
         apiKey: String,
         countryCode: String,
         phoneNumber: String,
         verificationCode: String
     ): Observable<PhoneResponseEntity> {
-        val userAgent = Api.getUserAgent(context)
-        return Api.twilioService.checkPhoneVerify(userAgent, apiKey, "sms", countryCode, phoneNumber, verificationCode)
+        return Api.twilioService.checkPhoneVerify(apiKey, "sms", countryCode, phoneNumber, verificationCode)
     }
 
     private fun initializeUserEntity(password: String, uid: String): LoginRequestEntity {

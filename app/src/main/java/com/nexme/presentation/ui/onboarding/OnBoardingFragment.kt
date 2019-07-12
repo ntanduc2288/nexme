@@ -43,7 +43,7 @@ class OnBoardingFragment: BaseLiveDataFragment() {
 //            gPlusSignIn()
         }
 
-        btnFacebook.setOnClickListener { onboardingViewModel.onFacebookClicked(context!!) }
+        btnFacebook.setOnClickListener { onboardingViewModel.onFacebookClicked() }
         btnSigUpWithPhone.setOnClickListener { openSignupMobilePage() }
         btnSkip.setOnClickListener { openHomePage() }
     }
@@ -70,7 +70,7 @@ class OnBoardingFragment: BaseLiveDataFragment() {
     }
 
     fun successfullyGettingGoogleAccount(accessToken: String, email: String){
-        onboardingViewModel.onAuthenGoogleSuccessful(activity!!, accessToken, email)
+        onboardingViewModel.onAuthenGoogleSuccessful(accessToken, email)
     }
 
 }

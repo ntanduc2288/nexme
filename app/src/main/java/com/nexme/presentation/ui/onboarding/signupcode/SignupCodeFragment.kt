@@ -5,6 +5,8 @@ import com.nexme.R
 import com.nexme.presentation.model.SignupObject
 import com.nexme.presentation.ui.BaseLiveDataFragment
 import com.nexme.presentation.ui.onboarding.signupcode.SignupCodeViewModel
+import com.nexme.presentation.ui.onboarding.signupname.SignupNameFragment
+import com.nexme.presentation.utils.pushFragment
 import kotlinx.android.synthetic.main.signup_code.*
 import kotlinx.android.synthetic.main.signup_mobile.btnBack
 import kotlinx.android.synthetic.main.signup_mobile.btnNext
@@ -48,6 +50,7 @@ class SignupCodeFragment: BaseLiveDataFragment() {
     private fun onNextClicked() {
 
 
+        pushFragment(getCurrentActivity(), SignupNameFragment.newInstance(signupObject!!), true)
 
 
     }

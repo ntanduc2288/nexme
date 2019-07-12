@@ -11,7 +11,7 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="@dimen/margin_medium" android:layout_marginStart="@dimen/margin_medium"/>
     <TextView
-            android:text="Enter the 4 digit code sent to"
+            android:text="@string/enter_the_4_digit_code_sent_to"
             style="@style/Text_Style"
             android:textSize="@dimen/text_size_large"
             android:id="@+id/textView" app:layout_constraintTop_toTopOf="parent"

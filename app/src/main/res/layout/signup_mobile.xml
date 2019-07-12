@@ -11,7 +11,7 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="@dimen/margin_medium" android:layout_marginStart="@dimen/margin_medium"/>
     <TextView
-            android:text="Enter your mobile number"
+            android:text="@string/enter_your_mobile_number"
             style="@style/Text_Style"
             android:textSize="@dimen/text_size_large"
             android:id="@+id/textView" app:layout_constraintTop_toTopOf="parent"
@@ -22,7 +22,7 @@
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="0dp"
-            android:layout_height="wrap_content" android:layout_marginTop="70dp"
+            android:layout_height="wrap_content" android:layout_marginTop="@dimen/signup_margin_top"
             app:layout_constraintTop_toBottomOf="@+id/textView" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="@dimen/margin_medium"
             android:layout_marginStart="@dimen/margin_medium" android:layout_marginRight="@dimen/margin_medium"
@@ -53,9 +53,9 @@
             android:text="@string/next"
             android:id="@+id/btnNext"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginRight="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
-            android:layout_marginStart="8dp" android:layout_marginTop="70dp"
+            android:layout_marginEnd="@dimen/margin_small" android:layout_marginRight="@dimen/margin_small"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small" android:layout_marginTop="@dimen/signup_margin_top"
             app:layout_constraintHorizontal_bias="0.94"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

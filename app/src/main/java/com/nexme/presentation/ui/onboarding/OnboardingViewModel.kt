@@ -2,45 +2,54 @@ package com.nexme.presentation.ui.onboarding
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.api.GoogleApiClient
 import com.jaychang.sa.AuthCallback
 import com.jaychang.sa.BuildConfig
 import com.jaychang.sa.SocialUser
 import com.jaychang.sa.facebook.SimpleAuth
 import com.nexme.domain.nexme.login.UserInteractor
 import com.nexme.domain.nexme.login.UserInteractorImpl
+import com.nexme.presentation.ui.App
 import com.nexme.presentation.ui.BaseViewModel
 import com.nexme.presentation.ui.onboarding.login.UserObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.*
 
-class OnboardingViewModel: BaseViewModel() {
+class OnboardingViewModel: BaseViewModel(), GoogleApiClient.OnConnectionFailedListener {
+
 
     val loginLiveData: MutableLiveData<UserObject> by lazy { MutableLiveData<UserObject>() }
+    val googleActivityLiveData: MutableLiveData<Intent> by lazy { MutableLiveData<Intent>() }
     var userInteractor: UserInteractor = UserInteractorImpl()
 
     fun onGoogleClicked(context: Context){
-        showToast("Coming soon")
+        val googleAccount = GoogleSignIn.getLastSignedInAccount(App.applicationContext())
+        if (googleAccount == null || googleAccount.isExpired || googleAccount.idToken.isNullOrEmpty()) {
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("236473905821-fets70bkgbu22sj2p3gkbndd121s6hup.apps.googleusercontent.com")
+                .requestProfile()
+                .requestEmail()
+                .build()
 
-        val scopes = Arrays.asList(
-            "https://www.googleapis.com/auth/youtube",
-            "https://www.googleapis.com/auth/youtube.upload"
-        )
-        com.jaychang.sa.google.SimpleAuth.connectGoogle(scopes, object: AuthCallback{
-            override fun onSuccess(socialUser: SocialUser?) {
-                showToast("Success. " + socialUser.toString())
-            }
+            val mGoogleApiClient = GoogleApiClient.Builder(context!!)
+                .enableAutoManage(context as FragmentActivity /* Activity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build()
 
-            override fun onError(error: Throwable?) {
-                showToast(error?.message ?: "Error")
-            }
+            val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
+            googleActivityLiveData.value = signInIntent
 
-            override fun onCancel() {
-                showToast("Canceled")
-            }
-
-        })
+        }else {
+            val accessToken = googleAccount.idToken
+            loginSocial(context, "google", accessToken!!)
+        }
     }
 
     fun onFacebookClicked(context: Context){
@@ -82,6 +91,10 @@ class OnboardingViewModel: BaseViewModel() {
     private fun errorOccurs(error: Throwable) {
         hideProgressDialog()
         error.message?.let { showToast(it) }
+    }
+
+    override fun onConnectionFailed(p0: ConnectionResult) {
+
     }
 
 

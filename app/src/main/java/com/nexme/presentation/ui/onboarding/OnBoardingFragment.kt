@@ -1,7 +1,6 @@
 package com.nexme.presentation.ui.onboarding
 
 import android.content.Intent
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
@@ -14,6 +13,7 @@ import kotlinx.android.synthetic.main.onboarding_view.*
 
 class OnBoardingFragment: BaseLiveDataFragment() {
 
+
     private lateinit var onboardingViewModel: OnboardingViewModel
 
     override fun registerViewModels() {
@@ -24,6 +24,7 @@ class OnBoardingFragment: BaseLiveDataFragment() {
 
     override fun subscribeObservers() {
         onboardingViewModel.loginLiveData.observe(this, loginSuccessfullyObserver)
+        onboardingViewModel.googleActivityLiveData.observe(this, openGoogleActivityObserver)
     }
 
     companion object {
@@ -37,10 +38,10 @@ class OnBoardingFragment: BaseLiveDataFragment() {
         btnLogin.setOnClickListener { openLoginPage() }
         btnGoogle.setOnClickListener {
 
-//            onboardingViewModel.onGoogleClicked(context!!)
-            (activity as OnboardingActivity).gPlusSignIn()
-
+            onboardingViewModel.onGoogleClicked(activity!!)
+//            gPlusSignIn()
         }
+
         btnFacebook.setOnClickListener { onboardingViewModel.onFacebookClicked(context!!) }
         btnSigUpWithPhone.setOnClickListener { onboardingViewModel.onSignUpWithPhoneClicked() }
         btnSkip.setOnClickListener { openHomePage() }
@@ -50,6 +51,10 @@ class OnBoardingFragment: BaseLiveDataFragment() {
         openHomePage()
     }
 
+    private val openGoogleActivityObserver = Observer<Intent> {
+        startActivityForResult(it, RC_SIGN_IN)
+    }
+
     private fun openHomePage() {
         startActivity(Intent(context, MapsActivity::class.java))
         getCurrentActivity().finish()
@@ -57,6 +62,10 @@ class OnBoardingFragment: BaseLiveDataFragment() {
 
     private fun openLoginPage(){
         pushFragment(getCurrentActivity(), LoginFragment.newInstance(), true)
+    }
+
+    fun successfullyGettingGoogleAccount(){
+        onboardingViewModel.onGoogleClicked(activity!!)
     }
 
 }

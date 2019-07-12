@@ -12,33 +12,17 @@ import com.nexme.R
 import com.nexme.presentation.ui.BaseActivity
 import com.nexme.presentation.utils.pushFragment
 
-
+const val RC_SIGN_IN = 123
 class OnboardingActivity: BaseActivity(), GoogleApiClient.OnConnectionFailedListener {
-    val RC_SIGN_IN = 123
+
     override fun getLayoutId() = R.layout.onboarding_activity
+    private var onBoardingFragmentInstance: OnBoardingFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pushFragment(this, OnBoardingFragment.newInstance(), false)
+        onBoardingFragmentInstance = OnBoardingFragment.newInstance()
+        pushFragment(this, onBoardingFragmentInstance!!, false)
     }
-
-    fun gPlusSignIn() {
-
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("236473905821-fets70bkgbu22sj2p3gkbndd121s6hup.apps.googleusercontent.com")
-            .requestProfile()
-            .requestEmail()
-            .build()
-
-        val mGoogleApiClient = GoogleApiClient.Builder(this@OnboardingActivity)
-            .enableAutoManage(this@OnboardingActivity /* Activity */, this /* OnConnectionFailedListener */)
-            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-            .build()
-
-        val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-
 
     override fun onConnectionFailed(p0: ConnectionResult) {
         Toast.makeText(this@OnboardingActivity, p0.errorMessage, Toast.LENGTH_SHORT).show()
@@ -56,6 +40,8 @@ class OnboardingActivity: BaseActivity(), GoogleApiClient.OnConnectionFailedList
                 val mFullName = acct.displayName
 
                 val gPlusID = acct.id
+
+                onBoardingFragmentInstance?.successfullyGettingGoogleAccount()
             }
         }
     }

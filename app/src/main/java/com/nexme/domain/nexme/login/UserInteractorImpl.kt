@@ -6,6 +6,7 @@ import com.nexme.data.model.request.login.LoginRequestEntity
 import com.nexme.data.model.request.login.UserEntity
 import com.nexme.data.model.request.login.UserLoginEntity
 import com.nexme.data.model.response.login.LoginResponseEntity
+import com.nexme.data.model.response.twilio.PhoneResponseEntity
 import com.nexme.data.services.Api
 import com.nexme.domain.mapping
 import com.nexme.presentation.manager.UserManager
@@ -35,6 +36,16 @@ class UserInteractorImpl : UserInteractor {
             .flatMap { Api.nexmeUserServices.updateUILogin(userAgent, it.first, it.second) }
             .map { loginResponse: LoginResponseEntity -> mapping(loginResponse) }
             .doOnNext { cacheUserData(it) }
+    }
+
+    override fun requestPhoneVerification(
+        context: Context,
+        apiKey: String,
+        countryCode: String,
+        phoneNumber: String
+    ): Observable<PhoneResponseEntity> {
+        val userAgent = Api.getUserAgent(context)
+        return Api.twilioService.requestPhoneVerify(userAgent, apiKey, "sms", countryCode, phoneNumber)
     }
 
     private fun initializeUserEntity(password: String, uid: String): LoginRequestEntity {

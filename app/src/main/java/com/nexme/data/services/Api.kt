@@ -13,9 +13,11 @@ object Api {
 
     private val STAGING_SERVICE_HOST = "https://service.nexmeapp.com"
     private val STAGING_SERVICE_DOTNET_HOST = "https://service-dotnet.nexmeapp.com"
+    private val TWILIO_SERVICE_HOST = "https://api.authy.com/"
     private val SERVICE_PATH = "/api/v1/"
     lateinit var nexmeUserServicesDotNet: NexmeUserServicesDotNet
     lateinit var nexmeUserServices: NexmeUserServices
+    lateinit var twilioService: TwilioService
 
     init {
         initializeHosts()
@@ -34,8 +36,15 @@ object Api {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
+        val twilioServicesAdapter = Retrofit.Builder()
+            .baseUrl(TWILIO_SERVICE_HOST)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+
         nexmeUserServicesDotNet = nexmeServiceDotnetAdapter.create(NexmeUserServicesDotNet::class.java)
         nexmeUserServices = nexmeServiceAdapter.create(NexmeUserServices::class.java)
+        twilioService = twilioServicesAdapter.create(TwilioService::class.java)
     }
 
     fun getUserAgent(context: Context): String{

@@ -37,6 +37,14 @@ class SignupMobileFragment: BaseLiveDataFragment() {
     override fun setupViews() {
         btnBack.setOnClickListener { getCurrentActivity().onBackPressed() }
 
+        setTTFfont(ccp, getString(R.string.montserrat_regular))
+
+        btnNext.setOnClickListener { onNextClicked() }
+
+//        formatPhoneNumber()
+    }
+
+    private fun formatPhoneNumber(){
         edtPhoneNumber.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
                 val text = edtPhoneNumber.getText().toString()
@@ -80,10 +88,6 @@ class SignupMobileFragment: BaseLiveDataFragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
         })
-
-        setTTFfont(ccp, getString(R.string.montserrat_regular))
-
-        btnNext.setOnClickListener { onNextClicked() }
     }
 
 
@@ -98,7 +102,8 @@ class SignupMobileFragment: BaseLiveDataFragment() {
         val signupObject = SignupObject()
         signupObject.phoneNumber = edtPhoneNumber.text.toString()
         signupObject.countryCode = ccp.selectedCountryCodeWithPlus
-        pushFragment(getCurrentActivity(), SignupCodeFragment.newInstance(signupObject), true)
+//        pushFragment(getCurrentActivity(), SignupCodeFragment.newInstance(signupObject), true)
+        signupMobileViewModel.onNextClicked(ccp.selectedCountryCode, edtPhoneNumber.text.toString() )
 
     }
 }

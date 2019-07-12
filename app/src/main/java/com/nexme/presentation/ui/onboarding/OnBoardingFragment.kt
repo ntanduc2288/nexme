@@ -8,6 +8,7 @@ import com.nexme.presentation.ui.BaseLiveDataFragment
 import com.nexme.presentation.ui.explore.MapsActivity
 import com.nexme.presentation.ui.onboarding.login.LoginFragment
 import com.nexme.presentation.ui.onboarding.login.UserObject
+import com.nexme.presentation.ui.onboarding.signupmobile.SignupMobileFragment
 import com.nexme.presentation.utils.pushFragment
 import kotlinx.android.synthetic.main.onboarding_view.*
 
@@ -43,7 +44,7 @@ class OnBoardingFragment: BaseLiveDataFragment() {
         }
 
         btnFacebook.setOnClickListener { onboardingViewModel.onFacebookClicked(context!!) }
-        btnSigUpWithPhone.setOnClickListener { onboardingViewModel.onSignUpWithPhoneClicked() }
+        btnSigUpWithPhone.setOnClickListener { openSignupMobilePage() }
         btnSkip.setOnClickListener { openHomePage() }
     }
 
@@ -52,7 +53,7 @@ class OnBoardingFragment: BaseLiveDataFragment() {
     }
 
     private val openGoogleActivityObserver = Observer<Intent> {
-        startActivityForResult(it, RC_SIGN_IN)
+        activity?.startActivityForResult(it, RC_SIGN_IN)
     }
 
     private fun openHomePage() {
@@ -64,8 +65,12 @@ class OnBoardingFragment: BaseLiveDataFragment() {
         pushFragment(getCurrentActivity(), LoginFragment.newInstance(), true)
     }
 
-    fun successfullyGettingGoogleAccount(){
-        onboardingViewModel.onGoogleClicked(activity!!)
+    private fun openSignupMobilePage(){
+        pushFragment(getCurrentActivity(), SignupMobileFragment.newInstance(), true)
+    }
+
+    fun successfullyGettingGoogleAccount(accessToken: String, email: String){
+        onboardingViewModel.onAuthenGoogleSuccessful(activity!!, accessToken, email)
     }
 
 }

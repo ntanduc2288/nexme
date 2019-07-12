@@ -12,6 +12,8 @@
         <item name="fontPath">@string/montserrat_regular</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="EditText_Style" parent="Widget.AppCompat.EditText">
@@ -25,6 +27,10 @@
 
     <style name="Text_Style.Light">
         <item name="fontPath">@string/montserrat_light</item>
+    </style>
+
+    <style name="Text_Style.Bold">
+        <item name="fontPath">@string/montserrat_bold</item>
     </style>
 
     <style name="Button_Style" parent="android:Widget.Button">
@@ -74,6 +80,17 @@
         <item name="android:layout_marginLeft">@dimen/margin_medium</item>
         <item name="android:layout_marginTop">@dimen/margin_medium</item>
         <item name="android:foreground">?selectableItemBackground</item>
+    </style>
+
+    <style name="Digit_Style">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:background">@drawable/bg_corner_white</item>
+        <item name="android:maxLength">1</item>
+        <item name="android:ems">10</item>
+        <item name="android:inputType">number</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

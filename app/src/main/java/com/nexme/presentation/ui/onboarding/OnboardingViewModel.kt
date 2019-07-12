@@ -22,38 +22,45 @@ import com.nexme.presentation.ui.onboarding.login.UserObject
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class OnboardingViewModel: BaseViewModel(), GoogleApiClient.OnConnectionFailedListener {
+class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedListener {
 
 
     val loginLiveData: MutableLiveData<UserObject> by lazy { MutableLiveData<UserObject>() }
     val googleActivityLiveData: MutableLiveData<Intent> by lazy { MutableLiveData<Intent>() }
     var userInteractor: UserInteractor = UserInteractorImpl()
+    var mGoogleApiClient: GoogleApiClient? = null
+    val gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestIdToken("236473905821-fets70bkgbu22sj2p3gkbndd121s6hup.apps.googleusercontent.com")
+        .requestProfile()
+        .requestEmail()
+        .build()
 
-    fun onGoogleClicked(context: Context){
+    fun onGoogleClicked(context: Context) {
         val googleAccount = GoogleSignIn.getLastSignedInAccount(App.applicationContext())
         if (googleAccount == null || googleAccount.isExpired || googleAccount.idToken.isNullOrEmpty()) {
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("236473905821-fets70bkgbu22sj2p3gkbndd121s6hup.apps.googleusercontent.com")
-                .requestProfile()
-                .requestEmail()
-                .build()
 
-            val mGoogleApiClient = GoogleApiClient.Builder(context!!)
-                .enableAutoManage(context as FragmentActivity /* Activity */, this /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build()
+            if (mGoogleApiClient == null) {
+                mGoogleApiClient = GoogleApiClient.Builder(context!!)
+                    .enableAutoManage(context as FragmentActivity /* Activity */, this /* OnConnectionFailedListener */)
+                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                    .build()
+            }
 
             val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
             googleActivityLiveData.value = signInIntent
 
-        }else {
+        } else {
             val accessToken = googleAccount.idToken
             loginSocial(context, "google", accessToken!!)
         }
     }
 
-    fun onFacebookClicked(context: Context){
-        SimpleAuth.connectFacebook(emptyArray<String>().toList(),  object: AuthCallback{
+    fun onAuthenGoogleSuccessful(context: Context, accessToken: String, email: String){
+        loginSocial(context, "google", accessToken)
+    }
+
+    fun onFacebookClicked(context: Context) {
+        SimpleAuth.connectFacebook(emptyArray<String>().toList(), object : AuthCallback {
             override fun onSuccess(socialUser: SocialUser) {
                 loginSocial(context, "facebook", socialUser.accessToken)
             }
@@ -69,7 +76,7 @@ class OnboardingViewModel: BaseViewModel(), GoogleApiClient.OnConnectionFailedLi
 
     }
 
-    fun onSignUpWithPhoneClicked(){
+    fun onSignUpWithPhoneClicked() {
         showToast("Coming soon")
     }
 
@@ -79,7 +86,7 @@ class OnboardingViewModel: BaseViewModel(), GoogleApiClient.OnConnectionFailedLi
         userInteractor.loginSocial(context, provider, accessToken, !BuildConfig.DEBUG)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({userObject -> loginSuccessfully(userObject)  }, {error -> errorOccurs(error) })
+            .subscribe({ userObject -> loginSuccessfully(userObject) }, { error -> errorOccurs(error) })
     }
 
     private fun loginSuccessfully(userObject: UserObject) {

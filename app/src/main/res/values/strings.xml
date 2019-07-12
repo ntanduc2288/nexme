@@ -16,4 +16,14 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="need_an_account">Need an account?</string>
     <string name="sign_up">Sign up</string>
+    <string name="next">Next</string>
+    <string name="nexme_phone_number">(800) 390-8801</string>
+    <string name="enter_your_mobile_number">Enter your mobile number</string>
+    <string name="enter_the_4_digit_code_sent_to">Enter the 4 digit code sent to</string>
+    <string name="what_is_your_name">What is your name?</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="what_is_your_email_address">What is your email address?</string>
+    <string name="info_nexmeapp_com">info@nexmeapp.com</string>
+    <string name="create_your_account_password">Create your account password</string>
 </resources>

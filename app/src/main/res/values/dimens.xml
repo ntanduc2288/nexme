@@ -3,6 +3,7 @@
     <dimen name="radius_corner">200dp</dimen>
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="text_size_medium">14sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
     <dimen name="space_medium">22dp</dimen>
     <dimen name="extra_large">35sp</dimen>
     <dimen name="space_small">10dp</dimen>
@@ -13,4 +14,5 @@
     <dimen name="margin_extra_large">42dp</dimen>
     <dimen name="create_account_text_margin">60dp</dimen>
     <dimen name="edittext_height">42dp</dimen>
+    <dimen name="signup_margin_top">70dp</dimen>
 </resources>

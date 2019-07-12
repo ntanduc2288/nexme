@@ -41,7 +41,9 @@ class OnboardingActivity: BaseActivity(), GoogleApiClient.OnConnectionFailedList
 
                 val gPlusID = acct.id
 
-                onBoardingFragmentInstance?.successfullyGettingGoogleAccount()
+                if (!acct.idToken.isNullOrEmpty() && !mEmail.isNullOrEmpty()){
+                    onBoardingFragmentInstance?.successfullyGettingGoogleAccount(acct.idToken!!, mEmail!!)
+                }
             }
         }
     }

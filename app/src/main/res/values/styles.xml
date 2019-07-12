@@ -29,6 +29,10 @@
         <item name="fontPath">@string/montserrat_light</item>
     </style>
 
+    <style name="Text_Style.Bold">
+        <item name="fontPath">@string/montserrat_bold</item>
+    </style>
+
     <style name="Button_Style" parent="android:Widget.Button">
         <item name="android:layout_height">@dimen/edittext_height</item>
         <item name="android:layout_width">wrap_content</item>

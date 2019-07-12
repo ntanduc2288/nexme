@@ -19,7 +19,7 @@ class UserInteractorImpl : UserInteractor {
 
         val userAgent = Api.getUserAgent(context)
 
-        return Api.nexmeUserServices.check(userAgent, uid)
+        return Api.nexmeUserServices.check(uid)
             .flatMap { isUidExist -> Observable.just(initializeUserEntity(password, uid)) }
             .flatMap { loginRequestEntity -> Api.nexmeUserServicesDotNet.login(userAgent, loginRequestEntity) }
             .map { UserLoginEntity(DeviceLoginEntity("noToken", isProd))  }
@@ -46,6 +46,17 @@ class UserInteractorImpl : UserInteractor {
     ): Observable<PhoneResponseEntity> {
         val userAgent = Api.getUserAgent(context)
         return Api.twilioService.requestPhoneVerify(userAgent, apiKey, "sms", countryCode, phoneNumber)
+    }
+
+    override fun checkPhoneVerification(
+        context: Context,
+        apiKey: String,
+        countryCode: String,
+        phoneNumber: String,
+        verificationCode: String
+    ): Observable<PhoneResponseEntity> {
+        val userAgent = Api.getUserAgent(context)
+        return Api.twilioService.checkPhoneVerify(userAgent, apiKey, "sms", countryCode, phoneNumber, verificationCode)
     }
 
     private fun initializeUserEntity(password: String, uid: String): LoginRequestEntity {

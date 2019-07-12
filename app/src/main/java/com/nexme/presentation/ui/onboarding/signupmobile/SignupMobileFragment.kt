@@ -3,14 +3,15 @@ package com.nexme.presentation.ui.onboarding.signupmobile
 import android.graphics.Typeface
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.hbb20.CountryCodePicker
 import com.nexme.R
 import com.nexme.presentation.model.SignupObject
 import com.nexme.presentation.ui.BaseLiveDataFragment
+import com.nexme.presentation.ui.onboarding.signupcode.SignupCodeFragment
 import com.nexme.presentation.utils.pushFragment
 import kotlinx.android.synthetic.main.signup_mobile.*
-
 
 
 class SignupMobileFragment: BaseLiveDataFragment() {
@@ -30,6 +31,7 @@ class SignupMobileFragment: BaseLiveDataFragment() {
     override fun getCurrentViewModel() = signupMobileViewModel
 
     override fun subscribeObservers() {
+        getCurrentViewModel().phoneResponseLiveData.observe(this, phoneObserver)
     }
 
     override fun getLayoutId() = R.layout.signup_mobile
@@ -98,12 +100,10 @@ class SignupMobileFragment: BaseLiveDataFragment() {
     }
 
     private fun onNextClicked() {
-
-        val signupObject = SignupObject()
-        signupObject.phoneNumber = edtPhoneNumber.text.toString()
-        signupObject.countryCode = ccp.selectedCountryCodeWithPlus
-//        pushFragment(getCurrentActivity(), SignupCodeFragment.newInstance(signupObject), true)
         signupMobileViewModel.onNextClicked(ccp.selectedCountryCode, edtPhoneNumber.text.toString() )
+    }
 
+    private val phoneObserver = Observer<SignupObject> {
+        pushFragment(getCurrentActivity(), SignupCodeFragment.newInstance(it), true)
     }
 }

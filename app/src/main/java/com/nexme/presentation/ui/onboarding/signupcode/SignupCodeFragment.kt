@@ -1,5 +1,10 @@
-package com.nexme.presentation.ui.onboarding.signupmobile
+package com.nexme.presentation.ui.onboarding.signupcode
 
+import android.os.Build
+import android.telephony.PhoneNumberUtils
+import android.text.Editable
+import android.text.TextWatcher
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
 import com.nexme.presentation.model.SignupObject
@@ -37,20 +42,58 @@ class SignupCodeFragment: BaseLiveDataFragment() {
     override fun getLayoutId() = R.layout.signup_code
 
     override fun setupViews() {
+        signupObject?.let {
 
-        lblPhoneNumber.text = signupObject?.phoneNumber
+//            lblPhoneNumber.text = PhoneNumberUtils.formatNumberToE164(it.phoneNumber, it.countryCode)
+//            PhoneNumberUtils.formatNumber("", "")
+        }
 
         btnBack.setOnClickListener { getCurrentActivity().onBackPressed() }
 
 
         btnNext.setOnClickListener { onNextClicked() }
+
+        edt1.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if (edt1.text.toString().isNotEmpty()){
+                    edt2.requestFocus()
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+        })
+
+        edt2.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if (edt2.text.toString().isNotEmpty()){
+                    edt3.requestFocus()
+                }
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+        })
+
+        edt3.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                if (edt3.text.toString().isNotEmpty()){
+                    edt4.requestFocus()
+                }
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+        })
     }
 
 
     private fun onNextClicked() {
-
-
-        pushFragment(getCurrentActivity(), SignupNameFragment.newInstance(signupObject!!), true)
+        val code = edt1.text.toString().trim() + edt2.text.toString().trim()  + edt3.text.toString().trim() + edt4.text.toString().trim()
+        signupCodeViewModel.onNextClicked(code)
+//        pushFragment(getCurrentActivity(), SignupNameFragment.newInstance(signupObject!!), true)
 
 
     }

@@ -24,6 +24,8 @@ class App: Application() {
             CalligraphyConfig.Builder()
                 .build()
         )
+
+        System.setProperty("http.User-Agent", "testing")
     }
 
 

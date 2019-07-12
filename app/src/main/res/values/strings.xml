@@ -26,4 +26,6 @@
     <string name="what_is_your_email_address">What is your email address?</string>
     <string name="info_nexmeapp_com">info@nexmeapp.com</string>
     <string name="create_your_account_password">Create your account password</string>
+    <string name="something_went_wrong">Something went wrong. Please try again</string>
+    <string name="wrong_username_password">Wrong username/password</string>
 </resources>

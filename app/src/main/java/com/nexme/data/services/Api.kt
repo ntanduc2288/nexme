@@ -2,8 +2,15 @@ package com.nexme.data.services
 
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import com.nexme.presentation.ui.App
+import okhttp3.Interceptor
+import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.IOException
+import okhttp3.OkHttpClient
+
+
 
 object Api {
 
@@ -24,22 +31,29 @@ object Api {
     }
 
     private fun initializeHosts() {
+        val httpClient = OkHttpClient.Builder()
+        httpClient.addNetworkInterceptor(AddHeaderInterceptor())
+        val okHttpClient = httpClient.build()
+
         val nexmeServiceDotnetAdapter = Retrofit.Builder()
             .baseUrl(STAGING_SERVICE_DOTNET_HOST + SERVICE_PATH)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(okHttpClient)
             .build()
 
         val nexmeServiceAdapter = Retrofit.Builder()
             .baseUrl(STAGING_SERVICE_HOST + SERVICE_PATH)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(okHttpClient)
             .build()
 
         val twilioServicesAdapter = Retrofit.Builder()
             .baseUrl(TWILIO_SERVICE_HOST)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .client(okHttpClient)
             .build()
 
         nexmeUserServicesDotNet = nexmeServiceDotnetAdapter.create(NexmeUserServicesDotNet::class.java)
@@ -58,4 +72,15 @@ object Api {
         return stringBuilder.toString()
     }
 
+}
+
+class AddHeaderInterceptor : Interceptor {
+    @Throws(IOException::class)
+    override fun intercept(chain: Interceptor.Chain): Response {
+
+        val builder = chain.request().newBuilder()
+        builder.addHeader(Api.USER_AGENT, Api.getUserAgent(App.applicationContext()))
+
+        return chain.proceed(builder.build())
+    }
 }

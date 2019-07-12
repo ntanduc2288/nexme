@@ -19,18 +19,20 @@ import com.nexme.domain.nexme.login.UserInteractorImpl
 import com.nexme.presentation.ui.App
 import com.nexme.presentation.ui.BaseViewModel
 import com.nexme.presentation.ui.onboarding.login.UserObject
+import com.nexme.presentation.utils.ErrorParsing
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedListener {
-
+//    private val requestIDToken = "236473905821-fets70bkgbu22sj2p3gkbndd121s6hup.apps.googleusercontent.com"
+    private val requestIDToken = "659355091265-acr98mn6p4kqkr0nhk0pafebjb0mlcoe.apps.googleusercontent.com"
 
     val loginLiveData: MutableLiveData<UserObject> by lazy { MutableLiveData<UserObject>() }
     val googleActivityLiveData: MutableLiveData<Intent> by lazy { MutableLiveData<Intent>() }
     var userInteractor: UserInteractor = UserInteractorImpl()
     var mGoogleApiClient: GoogleApiClient? = null
     val gso: GoogleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-        .requestIdToken("236473905821-fets70bkgbu22sj2p3gkbndd121s6hup.apps.googleusercontent.com")
+        .requestIdToken(requestIDToken)
         .requestProfile()
         .requestEmail()
         .build()
@@ -97,7 +99,7 @@ class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedL
 
     private fun errorOccurs(error: Throwable) {
         hideProgressDialog()
-        error.message?.let { showToast(it) }
+        error.message?.let { showToast(ErrorParsing.parse(error)) }
     }
 
     override fun onConnectionFailed(p0: ConnectionResult) {

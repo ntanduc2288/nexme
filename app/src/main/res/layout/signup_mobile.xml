@@ -44,6 +44,7 @@
                 android:id="@+id/edtPhoneNumber"
                 android:inputType="number"
                 android:hint="@string/nexme_phone_number"
+                android:text="2068223780"
                 tools:layout_editor_absoluteY="242dp" tools:layout_editor_absoluteX="-9dp"/>
     </LinearLayout>
 

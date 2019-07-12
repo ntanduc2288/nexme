@@ -9,4 +9,7 @@ import retrofit2.http.Query
 interface TwilioService {
     @POST("protected/json/phones/verification/start")
     fun requestPhoneVerify(@Header(Api.USER_AGENT) userAgent: String, @Query("api_key") apiKey: String, @Query("via") via: String, @Query("country_code") countryCode: String, @Query("phone_number") phoneNumber: String ): Observable<PhoneResponseEntity>
+
+    @POST("protected/json/phones/verification/check")
+    fun checkPhoneVerify(@Header(Api.USER_AGENT) userAgent: String, @Query("api_key") apiKey: String, @Query("via") via: String, @Query("country_code") countryCode: String, @Query("phone_number") phoneNumber: String, @Query("verification_code") verificationCode: String ): Observable<PhoneResponseEntity>
 }

@@ -6,7 +6,9 @@ import android.text.TextWatcher
 import androidx.lifecycle.ViewModelProviders
 import com.hbb20.CountryCodePicker
 import com.nexme.R
+import com.nexme.presentation.model.SignupObject
 import com.nexme.presentation.ui.BaseLiveDataFragment
+import com.nexme.presentation.utils.pushFragment
 import kotlinx.android.synthetic.main.signup_mobile.*
 
 
@@ -92,12 +94,11 @@ class SignupMobileFragment: BaseLiveDataFragment() {
     }
 
     private fun onNextClicked() {
-        val countryCodeSelected = ccp.selectedCountryCodeWithPlus
-        val phoneNumber = edtPhoneNumber.text.toString()
 
-        val finalPhoneNumber = countryCodeSelected + phoneNumber
-
-
+        val signupObject = SignupObject()
+        signupObject.phoneNumber = edtPhoneNumber.text.toString()
+        signupObject.countryCode = ccp.selectedCountryCodeWithPlus
+        pushFragment(getCurrentActivity(), SignupCodeFragment.newInstance(signupObject), true)
 
     }
 }

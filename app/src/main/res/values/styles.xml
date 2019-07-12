@@ -43,18 +43,18 @@
 
     <style name="Google_Button_Style" parent="Button_Style">
         <item name="android:textAppearance">@style/Text_Style</item>
-        <item name="android:background">@drawable/bg_google_button_corner</item>
+        <item name="android:background">@drawable/bg_google_button</item>
     </style>
 
     <style name="Facebook_Button_Style" parent="Button_Style">
         <item name="android:textAppearance">@style/Text_Style</item>
-        <item name="android:background">@drawable/bg_facebook_button_corner</item>
+        <item name="android:background">@drawable/bg_facebook_button</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="SignUp_Phone_Button_Style" parent="Button_Style">
         <item name="android:textAppearance">@style/Text_Style</item>
-        <item name="android:background">@drawable/bg_signup_phone_button_corner</item>
+        <item name="android:background">@drawable/bg_next_button</item>
     </style>
 
     <style name="Skip" parent="android:Widget.TextView">

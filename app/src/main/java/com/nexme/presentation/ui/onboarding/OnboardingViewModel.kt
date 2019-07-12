@@ -38,23 +38,33 @@ class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedL
         .build()
 
     fun onGoogleClicked(context: Context) {
-        val googleAccount = GoogleSignIn.getLastSignedInAccount(App.applicationContext())
-        if (googleAccount == null || googleAccount.isExpired || googleAccount.idToken.isNullOrEmpty()) {
+//        val googleAccount = GoogleSignIn.getLastSignedInAccount(App.applicationContext())
+//        if (googleAccount == null || googleAccount.isExpired || googleAccount.idToken.isNullOrEmpty()) {
+//
+//            if (mGoogleApiClient == null) {
+//                mGoogleApiClient = GoogleApiClient.Builder(context!!)
+//                    .enableAutoManage(context as FragmentActivity /* Activity */, this /* OnConnectionFailedListener */)
+//                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+//                    .build()
+//            }
+//
+//            val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
+//            googleActivityLiveData.value = signInIntent
+//
+//        } else {
+//            val accessToken = googleAccount.idToken
+//            loginSocial("google", accessToken!!)
+//        }
 
-            if (mGoogleApiClient == null) {
-                mGoogleApiClient = GoogleApiClient.Builder(context!!)
-                    .enableAutoManage(context as FragmentActivity /* Activity */, this /* OnConnectionFailedListener */)
-                    .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                    .build()
-            }
-
-            val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
-            googleActivityLiveData.value = signInIntent
-
-        } else {
-            val accessToken = googleAccount.idToken
-            loginSocial("google", accessToken!!)
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = GoogleApiClient.Builder(context!!)
+                .enableAutoManage(context as FragmentActivity /* Activity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build()
         }
+
+        val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
+        googleActivityLiveData.value = signInIntent
     }
 
     fun onAuthenGoogleSuccessful(accessToken: String, email: String){

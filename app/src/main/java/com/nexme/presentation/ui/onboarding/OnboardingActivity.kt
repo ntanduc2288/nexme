@@ -35,7 +35,6 @@ class OnboardingActivity: BaseActivity(), GoogleApiClient.OnConnectionFailedList
                 val acct = result.signInAccount
                 //get user's email
                 val mEmail = acct!!.email
-
                 //get user's full name
                 val mFullName = acct.displayName
 

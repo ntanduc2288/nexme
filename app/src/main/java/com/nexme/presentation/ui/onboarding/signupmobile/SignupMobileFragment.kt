@@ -10,6 +10,7 @@ import com.nexme.R
 import com.nexme.presentation.model.SignupObject
 import com.nexme.presentation.ui.BaseLiveDataFragment
 import com.nexme.presentation.ui.onboarding.signupcode.SignupCodeFragment
+import com.nexme.presentation.utils.AndroidUtil
 import com.nexme.presentation.utils.pushFragment
 import kotlinx.android.synthetic.main.signup_mobile.*
 
@@ -44,6 +45,16 @@ class SignupMobileFragment: BaseLiveDataFragment() {
         btnNext.setOnClickListener { onNextClicked() }
 
 //        formatPhoneNumber()
+        edtPhoneNumber.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                btnNext.isEnabled = AndroidUtil.isValidPhoneNumber(edtPhoneNumber.text.toString().trim())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+        })
     }
 
     private fun formatPhoneNumber(){

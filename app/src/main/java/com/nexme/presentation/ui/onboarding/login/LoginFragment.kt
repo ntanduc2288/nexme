@@ -1,6 +1,8 @@
 package com.nexme.presentation.ui.onboarding.login
 
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -12,6 +14,7 @@ import com.nexme.presentation.ui.BaseFragment
 import com.nexme.presentation.ui.BaseLiveDataFragment
 import com.nexme.presentation.ui.BaseViewModel
 import com.nexme.presentation.ui.explore.MapsActivity
+import com.nexme.presentation.utils.AndroidUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.login_view.*
 
@@ -43,6 +46,32 @@ class LoginFragment: BaseLiveDataFragment() {
         btnBack.setOnClickListener { getCurrentActivity().onBackPressed() }
         btnLogin.setOnClickListener { loginViewModel.onLoginClicked(edtPassword.text.toString().trim(), edtEmail.text.toString().trim()) }
 
+        edtEmail.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                btnLogin.isEnabled = shouldEnableLoginButton()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+        })
+
+        edtPassword.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                btnLogin.isEnabled = shouldEnableLoginButton()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+        })
+
+    }
+
+    private fun shouldEnableLoginButton(): Boolean {
+        return AndroidUtil.isValidEmail(edtEmail.text.toString().trim()) && AndroidUtil.isValidPassword(edtPassword.text.toString().trim())
     }
 
     private val loginSuccessfullyObserver = Observer<UserObject> {

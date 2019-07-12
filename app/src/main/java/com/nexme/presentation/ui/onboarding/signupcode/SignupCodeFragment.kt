@@ -11,6 +11,7 @@ import com.nexme.presentation.model.SignupObject
 import com.nexme.presentation.ui.BaseLiveDataFragment
 import com.nexme.presentation.ui.onboarding.signupcode.SignupCodeViewModel
 import com.nexme.presentation.ui.onboarding.signupname.SignupNameFragment
+import com.nexme.presentation.utils.AndroidUtil
 import com.nexme.presentation.utils.pushFragment
 import kotlinx.android.synthetic.main.signup_code.*
 import kotlinx.android.synthetic.main.signup_mobile.btnBack
@@ -31,7 +32,7 @@ class SignupCodeFragment: BaseLiveDataFragment() {
 
     override fun registerViewModels() {
         signupCodeViewModel = ViewModelProviders.of(this).get(SignupCodeViewModel::class.java)
-
+        signupCodeViewModel.signupObject = signupObject
     }
 
     override fun getCurrentViewModel() = signupCodeViewModel
@@ -57,6 +58,7 @@ class SignupCodeFragment: BaseLiveDataFragment() {
             override fun afterTextChanged(s: Editable?) {
                 if (edt1.text.toString().isNotEmpty()){
                     edt2.requestFocus()
+                    shouldEnableNextButton()
                 }
             }
 
@@ -70,6 +72,7 @@ class SignupCodeFragment: BaseLiveDataFragment() {
             override fun afterTextChanged(s: Editable?) {
                 if (edt2.text.toString().isNotEmpty()){
                     edt3.requestFocus()
+                    shouldEnableNextButton()
                 }
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -82,6 +85,16 @@ class SignupCodeFragment: BaseLiveDataFragment() {
                 if (edt3.text.toString().isNotEmpty()){
                     edt4.requestFocus()
                 }
+                shouldEnableNextButton()
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+        })
+
+        edt4.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                shouldEnableNextButton()
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
@@ -89,9 +102,17 @@ class SignupCodeFragment: BaseLiveDataFragment() {
         })
     }
 
+    private fun shouldEnableNextButton(){
+        btnNext.isEnabled = AndroidUtil.isValidCode(getCode())
+    }
+
+    private fun getCode(): String {
+        return edt1.text.toString().trim() + edt2.text.toString().trim()  + edt3.text.toString().trim() + edt4.text.toString().trim()
+    }
+
 
     private fun onNextClicked() {
-        val code = edt1.text.toString().trim() + edt2.text.toString().trim()  + edt3.text.toString().trim() + edt4.text.toString().trim()
+        val code = getCode()
         signupCodeViewModel.onNextClicked(code)
 //        pushFragment(getCurrentActivity(), SignupNameFragment.newInstance(signupObject!!), true)
 

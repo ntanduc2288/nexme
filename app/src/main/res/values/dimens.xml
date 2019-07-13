@@ -16,4 +16,6 @@
     <dimen name="edittext_height">42dp</dimen>
     <dimen name="signup_margin_top">70dp</dimen>
     <dimen name="next_width_button">150dp</dimen>
+    <dimen name="corner_radius">4dp</dimen>
+    <dimen name="tour_bottom_height">150dp</dimen>
 </resources>

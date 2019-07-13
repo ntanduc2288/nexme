@@ -34,4 +34,10 @@
         through the app, represented by a full-service agent.
     </string>
     <string name="instant_service">Instant service</string>
+    <string name="no_commitment">No commitment</string>
+    <string name="description_tour2">No contracts or commitment until you\'re ready to buy or sell a home. Even better, 50% commission refund back to you!</string>
+    <string name="description_tour3">Enable location and allow NEXME to provide the most accurate data.</string>
+    <string name="desctiption_tour4">Turn on notifications to find out about new homes as they hit the market.</string>
+    <string name="location">Location</string>
+    <string name="notifications">Notifications</string>
 </resources>

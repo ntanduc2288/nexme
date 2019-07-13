@@ -1,7 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:background="@color/com_facebook_button_background_color"
+                android:layout_width="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:paddingLeft="@dimen/margin_large"
+                android:paddingRight="@dimen/margin_large"
                 android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+            android:layout_above="@+id/bottomView"
+            android:layout_width="match_parent"
+            app:cardElevation="@dimen/corner_radius"
+            app:cardUseCompatPadding="true"
+            android:layout_height="match_parent">
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+            android:id="@+id/bottomView"
+            android:layout_width="match_parent" android:layout_height="@dimen/tour_bottom_height"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:gravity="center">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            style="@style/Tour_Title_Style"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/lblTitle"
+            android:layout_above="@+id/lblDescription"
+            android:text="@string/notifications"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="@dimen/margin_medium"
+            style="@style/Tour_Description_Style"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/lblDescription"
+            android:text="@string/desctiption_tour4"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

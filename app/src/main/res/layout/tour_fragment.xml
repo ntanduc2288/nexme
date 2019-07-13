@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="80dp"
+                    android:id="@+id/topview">
+
+        <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                android:layout_centerInParent="true"
+                android:id="@+id/dotsIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dotsColor="@color/colorPrimary"
+                app:dotsStrokeColor="@color/gray"
+                app:dotsCornerRadius="8dp"
+                app:dotsSize="16dp"
+                app:dotsSpacing="4dp"
+                app:dotsStrokeWidth="2dp"
+
+        />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:text="@string/skip"
+                style="@style/Skip"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/btnSkip"
+                android:textColor="@color/dark_gray"
+               />
+
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+            android:layout_below="@+id/topview"
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+    </androidx.viewpager.widget.ViewPager>
+
+
+</RelativeLayout>

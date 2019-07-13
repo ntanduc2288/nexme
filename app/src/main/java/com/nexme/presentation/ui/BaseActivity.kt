@@ -3,6 +3,7 @@ package com.nexme.presentation.ui
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import pub.devrel.easypermissions.EasyPermissions
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 abstract class BaseActivity: AppCompatActivity() {
@@ -27,5 +28,12 @@ abstract class BaseActivity: AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         isActive = false
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 }

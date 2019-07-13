@@ -40,4 +40,5 @@
     <string name="desctiption_tour4">Turn on notifications to find out about new homes as they hit the market.</string>
     <string name="location">Location</string>
     <string name="notifications">Notifications</string>
+    <string name="location_required">Location required</string>
 </resources>

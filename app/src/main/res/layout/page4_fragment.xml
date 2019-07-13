@@ -16,6 +16,7 @@
             android:layout_centerHorizontal="true"
             style="@style/Enable_Button_Style"
             android:layout_below="@+id/cardView"
+            android:id="@+id/btnEnable"
     />
 
     <LinearLayout

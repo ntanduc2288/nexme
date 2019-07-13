@@ -1,5 +1,6 @@
 package com.nexme.presentation.ui.onboarding
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.nexme.R
 import com.nexme.presentation.ui.BaseActivity
 import com.nexme.presentation.utils.pushFragment
+import pub.devrel.easypermissions.EasyPermissions
 
 const val RC_SIGN_IN = 123
 class OnboardingActivity: BaseActivity(), GoogleApiClient.OnConnectionFailedListener {
@@ -26,6 +28,7 @@ class OnboardingActivity: BaseActivity(), GoogleApiClient.OnConnectionFailedList
 
     override fun onConnectionFailed(p0: ConnectionResult) {
         Toast.makeText(this@OnboardingActivity, p0.errorMessage, Toast.LENGTH_SHORT).show()
+
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

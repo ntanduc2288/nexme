@@ -1,5 +1,6 @@
 package com.nexme.presentation.ui.explore
 
+import android.Manifest
 import android.os.Bundle
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -9,6 +10,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.nexme.R
 import com.nexme.presentation.ui.BaseActivity
+import pub.devrel.easypermissions.EasyPermissions
 
 class MapsActivity : BaseActivity(), OnMapReadyCallback {
 
@@ -22,6 +24,12 @@ class MapsActivity : BaseActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        if (!EasyPermissions.hasPermissions(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+            EasyPermissions.requestPermissions(this, getString(R.string.location_required),
+                1, Manifest.permission.ACCESS_FINE_LOCATION
+            )
+        }
     }
 
     /**

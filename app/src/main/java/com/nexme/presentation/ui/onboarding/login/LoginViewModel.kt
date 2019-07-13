@@ -9,6 +9,8 @@ import com.nexme.domain.nexme.login.UserInteractor
 import com.nexme.domain.nexme.login.UserInteractorImpl
 import com.nexme.presentation.ui.NexMeApp
 import com.nexme.presentation.ui.BaseViewModel
+import com.nexme.presentation.utils.CODE_400
+import com.nexme.presentation.utils.CODE_402
 import com.nexme.presentation.utils.ErrorParsing
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -44,15 +46,15 @@ class LoginViewModel: BaseViewModel() {
         var errorMessage = NexMeApp.applicationContext().getString(R.string.something_went_wrong)
 
         if (error is HttpException) {
-            if (error.code() == 422){
+            if (error.code() == CODE_402){
                 if (error.response()?.errorBody()?.string() == "false") {
-                    errorMessage = NexMeApp.applicationContext().getString(R.string.wrong_username_password)
+                    errorMessage = NexMeApp.applicationContext().getString(R.string.email_already_in_use)
                     return errorMessage
                 }
             }
 
-            if (error.code() == 400) {
-                errorMessage = NexMeApp.applicationContext().getString(R.string.wrong_username_password)
+            if (error.code() == CODE_400) {
+                errorMessage = NexMeApp.applicationContext().getString(R.string.invalid_password)
                 return errorMessage
             }
             errorMessage = ErrorParsing.parse(error)

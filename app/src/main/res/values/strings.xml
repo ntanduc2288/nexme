@@ -28,4 +28,6 @@
     <string name="create_your_account_password">Create your account password</string>
     <string name="something_went_wrong">Something went wrong. Please try again</string>
     <string name="wrong_username_password">Wrong username/password</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="email_already_in_use">Email already in use</string>
 </resources>

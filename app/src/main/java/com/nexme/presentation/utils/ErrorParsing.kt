@@ -12,7 +12,7 @@ object ErrorParsing {
         if (error is HttpException) {
             if (error.code() == 422){
                 if (error.response()?.errorBody()?.string() == "false") {
-                    errorMessage = NexMeApp.applicationContext().getString(R.string.wrong_username_password)
+                    errorMessage = NexMeApp.applicationContext().getString(R.string.email_already_in_use)
                     return errorMessage
                 }
             }

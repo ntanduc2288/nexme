@@ -10,6 +10,7 @@ import com.nexme.presentation.ui.explore.MapsActivity
 import com.nexme.presentation.ui.onboarding.login.LoginFragment
 import com.nexme.presentation.ui.onboarding.login.UserObject
 import com.nexme.presentation.ui.onboarding.signupmobile.SignupMobileFragment
+import com.nexme.presentation.ui.onboarding.signupname.SignupNameFragment
 import com.nexme.presentation.ui.onboarding.signuppassword.SignupPasswordFragment
 import com.nexme.presentation.utils.pushFragment
 import kotlinx.android.synthetic.main.onboarding_view.*
@@ -68,7 +69,8 @@ class OnBoardingFragment: BaseLiveDataFragment() {
     }
 
     private fun openSignupMobilePage(){
-        pushFragment(getCurrentActivity(), SignupMobileFragment.newInstance(), true)
+//        pushFragment(getCurrentActivity(), SignupMobileFragment.newInstance(), true)
+        pushFragment(getCurrentActivity(), SignupNameFragment.newInstance(SignupObject()), true)
     }
 
     fun successfullyGettingGoogleAccount(accessToken: String, email: String){

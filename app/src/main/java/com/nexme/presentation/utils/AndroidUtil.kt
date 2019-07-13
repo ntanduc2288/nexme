@@ -1,8 +1,13 @@
 package com.nexme.presentation.utils
 
+import android.util.Patterns
+
+
+
 object AndroidUtil {
     fun isValidEmail(email: String): Boolean {
-        return true
+        val pattern = Patterns.EMAIL_ADDRESS
+        return pattern.matcher(email).matches()
     }
 
     fun isValidPassword(password: String): Boolean {

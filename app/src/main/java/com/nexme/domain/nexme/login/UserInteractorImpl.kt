@@ -51,6 +51,10 @@ class UserInteractorImpl : UserInteractor {
         return NexMeApi.twilioService.checkPhoneVerify(apiKey, "sms", countryCode, phoneNumber, verificationCode)
     }
 
+    override fun checkUID(uid: String): Observable<Boolean> {
+        return NexMeApi.nexmeUserServices.check(uid)
+    }
+
     private fun initializeUserEntity(password: String, uid: String): LoginRequestEntity {
         val userEntity = UserEntity("email", password, uid)
         return LoginRequestEntity(userEntity)

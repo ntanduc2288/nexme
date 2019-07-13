@@ -57,14 +57,18 @@ class SignupNameFragment: BaseLiveDataFragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
         })
+
+        shouldEnableNextButton()
     }
 
     private fun shouldEnableNextButton() {
-        btnNext.isEnabled = AndroidUtil.isValidName(edtFirstName.text.toString().trim(), edtFirstName.text.toString().trim())
+        btnNext.isEnabled = AndroidUtil.isValidName(edtFirstName.text.toString().trim(), edtLastName.text.toString().trim())
     }
 
 
     private fun onNextClicked() {
+        signupObject?.firstName = edtFirstName.text.toString().trim()
+        signupObject?.lastName = edtLastName.text.toString().trim()
 
         pushFragment(getCurrentActivity(), SignupEmailFragment.newInstance(signupObject!!), true)
 

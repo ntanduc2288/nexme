@@ -2,6 +2,7 @@ package com.nexme.presentation.ui.onboarding.signupemail
 
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
 import com.nexme.presentation.model.SignupObject
@@ -31,6 +32,7 @@ class SignupEmailFragment: BaseLiveDataFragment() {
     override fun getCurrentViewModel() = signupEmailViewModel
 
     override fun subscribeObservers() {
+        signupEmailViewModel.emailLiveData.observe(this, emailValidObserver)
     }
 
     override fun getLayoutId() = R.layout.signup_email
@@ -51,6 +53,7 @@ class SignupEmailFragment: BaseLiveDataFragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
         })
+        shouldEnableNextButton()
     }
 
     private fun shouldEnableNextButton() {
@@ -60,8 +63,13 @@ class SignupEmailFragment: BaseLiveDataFragment() {
 
     private fun onNextClicked() {
 
-        pushFragment(getCurrentActivity(), SignupPasswordFragment.newInstance(signupObject!!), true)
+        signupEmailViewModel.onNextClicked(signupObject!!, edtEmail.text.toString().trim())
 
 
+
+    }
+
+    private val emailValidObserver = Observer<SignupObject> {
+        pushFragment(getCurrentActivity(), SignupPasswordFragment.newInstance(it), true)
     }
 }

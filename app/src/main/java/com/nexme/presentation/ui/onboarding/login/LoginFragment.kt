@@ -72,8 +72,4 @@ class LoginFragment: BaseLiveDataFragment() {
         openHomePage()
     }
 
-    private fun openHomePage() {
-        startActivity(Intent(context, MapsActivity::class.java))
-        getCurrentActivity().finish()
-    }
 }

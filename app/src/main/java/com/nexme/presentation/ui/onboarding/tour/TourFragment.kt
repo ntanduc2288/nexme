@@ -30,5 +30,20 @@ class TourFragment: BaseLiveDataFragment() {
         val tourAdapter = TourAdapter(getCurrentActivity().supportFragmentManager)
         vp.adapter = tourAdapter
         dotsIndicator.setViewPager(vp)
+
+        btnNext.setOnClickListener { onNextClicked() }
+
+        btnSkip.setOnClickListener { openHomePage() }
+    }
+
+    private fun onNextClicked() {
+        vp.adapter?.let {
+            if (vp.currentItem == it.count - 1){
+                openHomePage()
+            }
+        }
+
+        vp.setCurrentItem(vp.currentItem + 1, true)
+
     }
 }

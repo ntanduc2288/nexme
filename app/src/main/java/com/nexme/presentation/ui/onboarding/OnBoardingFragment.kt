@@ -60,10 +60,6 @@ class OnBoardingFragment: BaseLiveDataFragment() {
         activity?.startActivityForResult(it, RC_SIGN_IN)
     }
 
-    private fun openHomePage() {
-        startActivity(Intent(context, MapsActivity::class.java))
-        getCurrentActivity().finish()
-    }
 
     private fun openLoginPage(){
         pushFragment(getCurrentActivity(), LoginFragment.newInstance(), true)

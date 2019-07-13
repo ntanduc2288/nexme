@@ -1,6 +1,7 @@
 package com.nexme.presentation.ui
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.nexme.presentation.ui.dialog.PROGRESS_DIALOG_TAG
 import com.nexme.presentation.ui.dialog.ProgressDialogFragment
+import com.nexme.presentation.ui.explore.MapsActivity
 import java.lang.ref.WeakReference
 
 abstract class BaseFragment : Fragment() {
@@ -84,5 +86,10 @@ abstract class BaseFragment : Fragment() {
 
     fun getCurrentActivity(): AppCompatActivity {
         return activity as AppCompatActivity
+    }
+
+    fun openHomePage() {
+        startActivity(Intent(context, MapsActivity::class.java))
+        getCurrentActivity().finish()
     }
 }

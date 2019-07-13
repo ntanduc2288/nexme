@@ -5,14 +5,12 @@
                 android:paddingRight="@dimen/margin_large"
                 android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
             android:layout_above="@+id/bottomView"
             android:layout_width="match_parent"
-            app:cardElevation="@dimen/corner_radius"
-            app:cardUseCompatPadding="true"
-            android:layout_height="match_parent">
-
-    </androidx.cardview.widget.CardView>
+            android:id="@+id/cardView"
+            android:background="@drawable/shadow"
+            android:layout_height="match_parent"></RelativeLayout>
 
     <LinearLayout
             android:id="@+id/bottomView"

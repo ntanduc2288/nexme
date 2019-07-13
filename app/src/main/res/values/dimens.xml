@@ -18,4 +18,5 @@
     <dimen name="next_width_button">150dp</dimen>
     <dimen name="corner_radius">4dp</dimen>
     <dimen name="tour_bottom_height">150dp</dimen>
+    <dimen name="negative_margin_tour">-30dp</dimen>
 </resources>

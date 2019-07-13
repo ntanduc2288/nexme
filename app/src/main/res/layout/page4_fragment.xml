@@ -5,16 +5,18 @@
                 android:paddingRight="@dimen/margin_large"
                 android:layout_height="match_parent">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
             android:layout_above="@+id/bottomView"
             android:layout_width="match_parent"
-            app:cardElevation="@dimen/corner_radius"
-            app:cardUseCompatPadding="true"
-            android:layout_height="match_parent">
+            android:id="@+id/cardView"
+            android:background="@drawable/shadow"
+            android:layout_height="match_parent"></RelativeLayout>
 
-
-
-    </androidx.cardview.widget.CardView>
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_centerHorizontal="true"
+            style="@style/Enable_Button_Style"
+            android:layout_below="@+id/cardView"
+    />
 
     <LinearLayout
             android:id="@+id/bottomView"

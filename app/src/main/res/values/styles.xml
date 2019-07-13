@@ -60,6 +60,18 @@
         <item name="android:background">@drawable/bg_next_button</item>
     </style>
 
+    <style name="Enable_Button_Style" parent="Button_Style">
+        <item name="android:textAppearance">@style/Text_Style</item>
+        <item name="android:background">@drawable/bg_enable_button</item>
+        <item name="fontPath">@string/poppins_bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:text">@string/enable</item>
+        <item name="android:layout_marginTop">@dimen/negative_margin_tour</item>
+        <item name="android:layout_width">@dimen/next_width_button</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
     <style name="Skip" parent="android:Widget.TextView">
         <item name="android:textAppearance">@style/Text_Style</item>
         <item name="android:background">@android:color/transparent</item>
@@ -107,4 +119,5 @@
         <item name="fontPath">@string/montserrat_semiBold</item>
     </style>
 
+    <string name="enable">Enable</string>
 </resources>

@@ -29,6 +29,7 @@ class SignupPasswordFragment: BaseLiveDataFragment() {
     override fun registerViewModels() {
         signupPasswordViewModel = ViewModelProviders.of(this).get(SignupPasswordViewModel::class.java)
 
+
     }
 
     override fun getCurrentViewModel() = signupPasswordViewModel
@@ -39,7 +40,6 @@ class SignupPasswordFragment: BaseLiveDataFragment() {
     override fun getLayoutId() = R.layout.signup_password
 
     override fun setupViews() {
-
 
         btnBack.setOnClickListener { getCurrentActivity().onBackPressed() }
 
@@ -54,6 +54,8 @@ class SignupPasswordFragment: BaseLiveDataFragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
         })
+
+        shouldEnableNextButton()
     }
 
     private fun shouldEnableNextButton() {

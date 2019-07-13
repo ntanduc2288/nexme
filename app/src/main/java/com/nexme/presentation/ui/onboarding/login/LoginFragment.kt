@@ -3,19 +3,12 @@ package com.nexme.presentation.ui.onboarding.login
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
-import com.nexme.data.services.Api
-import com.nexme.data.model.request.login.UserEntity
-import com.nexme.data.model.request.login.LoginRequestEntity
-import com.nexme.presentation.ui.BaseFragment
 import com.nexme.presentation.ui.BaseLiveDataFragment
-import com.nexme.presentation.ui.BaseViewModel
 import com.nexme.presentation.ui.explore.MapsActivity
 import com.nexme.presentation.utils.AndroidUtil
-import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.login_view.*
 
 class LoginFragment: BaseLiveDataFragment() {

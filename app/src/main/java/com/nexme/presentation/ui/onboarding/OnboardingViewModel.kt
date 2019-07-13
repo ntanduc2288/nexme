@@ -6,7 +6,6 @@ import android.content.Intent
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
@@ -16,7 +15,6 @@ import com.jaychang.sa.SocialUser
 import com.jaychang.sa.facebook.SimpleAuth
 import com.nexme.domain.nexme.login.UserInteractor
 import com.nexme.domain.nexme.login.UserInteractorImpl
-import com.nexme.presentation.ui.App
 import com.nexme.presentation.ui.BaseViewModel
 import com.nexme.presentation.ui.onboarding.login.UserObject
 import com.nexme.presentation.utils.ErrorParsing
@@ -38,7 +36,7 @@ class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedL
         .build()
 
     fun onGoogleClicked(context: Context) {
-//        val googleAccount = GoogleSignIn.getLastSignedInAccount(App.applicationContext())
+//        val googleAccount = GoogleSignIn.getLastSignedInAccount(NexMeApp.applicationContext())
 //        if (googleAccount == null || googleAccount.isExpired || googleAccount.idToken.isNullOrEmpty()) {
 //
 //            if (mGoogleApiClient == null) {

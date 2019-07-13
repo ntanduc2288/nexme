@@ -1,11 +1,9 @@
 package com.nexme.data.services
 
-import com.nexme.data.services.Api.CLIENT_TOKEN
-import com.nexme.data.model.request.login.LoginRequestEntity
+import com.nexme.data.services.NexMeApi.CLIENT_TOKEN
 import com.nexme.data.model.request.login.UserLoginEntity
 import com.nexme.data.model.response.login.LoginResponseEntity
-import com.nexme.data.services.Api.UID
-import com.nexme.data.services.Api.USER_AGENT
+import com.nexme.data.services.NexMeApi.UID
 import io.reactivex.Observable
 import retrofit2.http.*
 

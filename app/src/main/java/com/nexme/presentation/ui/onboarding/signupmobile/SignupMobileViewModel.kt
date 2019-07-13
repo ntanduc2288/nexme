@@ -5,9 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.nexme.data.model.response.twilio.PhoneResponseEntity
 import com.nexme.domain.nexme.login.UserInteractorImpl
 import com.nexme.presentation.model.SignupObject
-import com.nexme.presentation.ui.App
 import com.nexme.presentation.ui.BaseViewModel
-import com.nexme.presentation.ui.onboarding.login.UserObject
 import com.nexme.presentation.utils.ErrorParsing
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

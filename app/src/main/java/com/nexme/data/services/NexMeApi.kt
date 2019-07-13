@@ -2,7 +2,7 @@ package com.nexme.data.services
 
 import android.content.Context
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import com.nexme.presentation.ui.App
+import com.nexme.presentation.ui.NexMeApp
 import okhttp3.Interceptor
 import okhttp3.Response
 import retrofit2.Retrofit
@@ -12,7 +12,7 @@ import okhttp3.OkHttpClient
 
 
 
-object Api {
+object NexMeApi {
 
     const val CLIENT_TOKEN = "x-client-token: d7f11248-036f-4f92-bc91-70cd82de9255"
     const val USER_AGENT = "user-agent"
@@ -79,7 +79,9 @@ class AddHeaderInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val builder = chain.request().newBuilder()
-        builder.header(Api.USER_AGENT, Api.getUserAgent(App.applicationContext()))
+        builder.header(NexMeApi.USER_AGENT, NexMeApi.getUserAgent(NexMeApp.applicationContext()))
+        builder.header("accept", "application/json")
+        builder.header("content-type", "application/json")
 
         return chain.proceed(builder.build())
     }

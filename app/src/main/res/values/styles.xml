@@ -97,4 +97,14 @@
         <item name="android:action">@string/next</item>
     </style>
 
+    <style name="Tour_Description_Style" parent="@style/Text_Style">
+        <item name="android:textColor">@color/medium_gray</item>
+    </style>
+
+    <style name="Tour_Title_Style" parent="@style/Text_Style">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">30sp</item>
+        <item name="fontPath">@string/montserrat_semiBold</item>
+    </style>
+
 </resources>

@@ -30,4 +30,8 @@
     <string name="wrong_username_password">Wrong username/password</string>
     <string name="invalid_password">Invalid password</string>
     <string name="email_already_in_use">Email already in use</string>
+    <string name="description_tour1">Tour homes with a full-service agent, available in real-time. Make an offer right
+        through the app, represented by a full-service agent.
+    </string>
+    <string name="instant_service">Instant service</string>
 </resources>

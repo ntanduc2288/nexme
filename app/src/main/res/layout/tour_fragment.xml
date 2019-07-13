@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="80dp"
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="50dp"
                     android:id="@+id/topview">
 
         <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
@@ -12,11 +12,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:dotsColor="@color/colorPrimary"
-                app:dotsStrokeColor="@color/gray"
+                app:dotsStrokeColor="@color/light_gray"
                 app:dotsCornerRadius="8dp"
-                app:dotsSize="16dp"
+                app:dotsSize="10dp"
                 app:dotsSpacing="4dp"
-                app:dotsStrokeWidth="2dp"
+                app:dotsStrokeWidth="1dp"
 
         />
 
@@ -29,16 +29,30 @@
                 android:layout_centerVertical="true"
                 android:id="@+id/btnSkip"
                 android:textColor="@color/dark_gray"
-               />
+                fontPath="@string/poppins_bold"
+        />
 
     </RelativeLayout>
 
     <androidx.viewpager.widget.ViewPager
             android:layout_below="@+id/topview"
+            android:layout_above="@+id/btnNext"
             android:id="@+id/vp"
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="match_parent">
     </androidx.viewpager.widget.ViewPager>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="@dimen/next_width_button"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            style="@style/SignUp_Phone_Button_Style"
+            android:layout_marginTop="@dimen/margin_large"
+            android:layout_marginBottom="@dimen/margin_extra_large"
+            android:text="@string/next"
+            android:id="@+id/btnNext"
+    />
 
 
 </RelativeLayout>

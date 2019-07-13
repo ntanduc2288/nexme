@@ -3,4 +3,6 @@
     <string name="montserrat_regular">fonts/montserrat-regular.otf</string>
     <string name="montserrat_light">fonts/montserrat-light.otf</string>
     <string name="montserrat_bold">fonts/montserrat-bold.otf</string>
+    <string name="poppins_bold">fonts/poppins-bold.otf</string>
+    <string name="montserrat_semiBold">fonts/montserrat-semiBold.otf</string>
 </resources>

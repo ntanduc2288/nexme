@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:background="@color/colorPrimary"
+                android:paddingLeft="@dimen/margin_large"
+                android:paddingRight="@dimen/margin_large"
                 android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+            android:layout_above="@+id/lblTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="@dimen/margin_medium"
+            style="@style/Tour_Title_Style"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/lblTitle"
+            android:layout_above="@+id/lblDescription"
+            android:text="@string/instant_service"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginTop="@dimen/margin_medium"
+            style="@style/Tour_Description_Style"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:id="@+id/lblDescription"
+            android:text="@string/description_tour1"/>
 
 </RelativeLayout>

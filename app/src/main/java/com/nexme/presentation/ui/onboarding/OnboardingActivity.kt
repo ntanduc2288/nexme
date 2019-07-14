@@ -1,18 +1,15 @@
 package com.nexme.presentation.ui.onboarding
 
-import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.google.android.gms.auth.GoogleAuthUtil
 import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.nexme.R
 import com.nexme.presentation.ui.BaseActivity
 import com.nexme.presentation.utils.pushFragment
-import pub.devrel.easypermissions.EasyPermissions
 
 const val RC_SIGN_IN = 123
 class OnboardingActivity: BaseActivity(), GoogleApiClient.OnConnectionFailedListener {
@@ -35,17 +32,30 @@ class OnboardingActivity: BaseActivity(), GoogleApiClient.OnConnectionFailedList
         if (requestCode == RC_SIGN_IN) {
             val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
             if (result.isSuccess) {
-                val acct = result.signInAccount
-                //get user's email
-                val mEmail = acct!!.email
-                //get user's full name
-                val mFullName = acct.displayName
 
-                val gPlusID = acct.id
 
-                if (!acct.idToken.isNullOrEmpty() && !mEmail.isNullOrEmpty()){
-                    onBoardingFragmentInstance?.successfullyGettingGoogleAccount(acct.idToken!!, mEmail!!)
-                }
+                Thread(Runnable {
+
+                    try {
+                        val acct = result.signInAccount
+                        //get user's email
+                        val mEmail = acct!!.email
+
+                        val scope = "oauth2:https://www.googleapis.com/auth/userinfo.profile"
+
+                        val token = GoogleAuthUtil.getToken(this@OnboardingActivity, acct.account, scope)
+
+                        this@OnboardingActivity.runOnUiThread {
+                            onBoardingFragmentInstance?.successfullyGettingGoogleAccount(token, mEmail!!)
+                        }
+
+
+                    }catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+
+
+                }).start()
             }
         }
     }

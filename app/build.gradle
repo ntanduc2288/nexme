@@ -15,12 +15,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
 
     signingConfigs {
         debug {
@@ -29,9 +23,31 @@ android {
             storePassword pwd
             keyAlias "androiddebugkey"
             keyPassword pwd
+
+        }
+
+
+        release {
+            def pwd = file("credentials/release.pwd").text.trim()
+            storeFile file("credentials/release.jks")
+            storePassword pwd
+            keyAlias "nexme"
+            keyPassword pwd
+
         }
 
     }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
 }
 
 dependencies {

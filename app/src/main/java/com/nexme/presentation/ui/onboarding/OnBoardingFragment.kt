@@ -66,8 +66,7 @@ class OnBoardingFragment: BaseLiveDataFragment() {
     }
 
     private fun openSignupMobilePage(){
-//        pushFragment(getCurrentActivity(), SignupMobileFragment.newInstance(), true)
-        pushFragment(getCurrentActivity(), TourFragment.newInstance(), true)
+        pushFragment(getCurrentActivity(), SignupMobileFragment.newInstance(), true)
     }
 
     fun successfullyGettingGoogleAccount(accessToken: String, email: String){

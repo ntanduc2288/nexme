@@ -21,6 +21,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    signingConfigs {
+        debug {
+            def pwd = file("credentials/debug.pwd").text.trim()
+            storeFile file("credentials/debug.keystore")
+            storePassword pwd
+            keyAlias "androiddebugkey"
+            keyPassword pwd
+        }
+
+    }
 }
 
 dependencies {

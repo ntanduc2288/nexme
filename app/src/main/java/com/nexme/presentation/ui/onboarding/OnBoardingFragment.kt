@@ -70,6 +70,13 @@ class OnBoardingFragment: BaseLiveDataFragment() {
     private fun openSignupMobilePage(){
         pushFragment(getCurrentActivity(), SignupMobileFragment.newInstance(), true)
 
+
+        // Test sign up code
+//        val signupObject = SignupObject()
+//        signupObject.phoneNumber = "2068223780"
+//        signupObject.secondToExpire = 10
+//        signupObject.countryCode = "1"
+//        pushFragment(getCurrentActivity(), SignupCodeFragment.newInstance(signupObject), true)
     }
 
     fun successfullyGettingGoogleAccount(accessToken: String, email: String){

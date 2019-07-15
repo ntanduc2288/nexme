@@ -12,28 +12,28 @@ import io.reactivex.Observable
 
 class UserInteractorImpl : UserInteractor {
 
-    override fun login(password: String, uid: String, isProd: Boolean): Observable<UserObject> {
-        return NexMeApi.nexmeUserServices.check(uid)
-            .flatMap { isUidExist -> Observable.just(initializeUserEntity(password, uid)) }
+    override fun login(password: String, email: String, isProd: Boolean): Observable<UserObject> {
+        return NexMeApi.nexmeUserServices.check(email)
+            .flatMap { _isUidExist -> Observable.just(initializeUserEntity(password, email)) }
             .flatMap { loginRequestEntity -> NexMeApi.nexmeUserServicesDotNet.login(loginRequestEntity) }
             .map { UserLoginEntity(DeviceLoginEntity("noToken", isProd))  }
-            .flatMap { NexMeApi.nexmeUserServices.updateUILogin(uid, it) }
+            .flatMap { NexMeApi.nexmeUserServices.updateUILogin(email, it) }
             .map { loginResponse: LoginResponseEntity -> mapping(loginResponse) }
             .doOnNext { cacheUserData(it) }
     }
 
     override fun signupPhone(
-        uid: String,
+        email: String,
         password: String,
         phone: String,
         firstName: String,
         lastName: String,
         isProd: Boolean
     ): Observable<UserObject> {
-        return Observable.just(initializePhoneUserSignupEntity(uid, password, phone, firstName, lastName))
+        return Observable.just(initializePhoneUserSignupEntity(email, password, phone, firstName, lastName))
             .flatMap { loginPhoneRequestEntity -> NexMeApi.nexmeUserServicesDotNet.loginViaPhone(loginPhoneRequestEntity) }
             .map { UserLoginEntity(DeviceLoginEntity("noToken", isProd))  }
-            .flatMap { NexMeApi.nexmeUserServices.updateUILogin(uid, it) }
+            .flatMap { NexMeApi.nexmeUserServices.updateUILogin(email, it) }
             .map { loginResponse: LoginResponseEntity -> mapping(loginResponse) }
             .doOnNext { cacheUserData(it) }
     }

@@ -1,5 +1,6 @@
 package com.nexme.presentation.ui.onboarding.signupemail
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import com.nexme.R
 import com.nexme.domain.nexme.login.UserInteractor
@@ -17,12 +18,13 @@ class SignupEmailViewModel: BaseViewModel() {
 
     val emailLiveData: MutableLiveData<SignupObject> by lazy { MutableLiveData<SignupObject>() }
 
+    @SuppressLint("CheckResult")
     fun onNextClicked(signupObject: SignupObject, email: String) {
         showProgressDialog()
         userInteractor.checkUID(email)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({isValidUid ->
+            .subscribe({_isValidUid ->
                 hideProgressDialog()
                 showToast(NexMeApp.applicationContext().getString(R.string.email_already_in_use))
 

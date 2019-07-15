@@ -1,6 +1,8 @@
 package com.nexme.presentation.ui.onboarding.signupcode
 
 import android.annotation.SuppressLint
+import androidx.lifecycle.MutableLiveData
+import com.nexme.data.model.response.twilio.PhoneCodeResponseEntity
 import com.nexme.data.model.response.twilio.PhoneResponseEntity
 import com.nexme.domain.nexme.login.UserInteractorImpl
 import com.nexme.presentation.model.SignupObject
@@ -12,6 +14,7 @@ import io.reactivex.schedulers.Schedulers
 
 class SignupCodeViewModel : BaseViewModel() {
 
+    val signupCodeLiveData: MutableLiveData<String> by lazy { MutableLiveData<String>() }
     var signupObject: SignupObject? = null
     private val userInteractor = UserInteractorImpl()
 
@@ -27,14 +30,14 @@ class SignupCodeViewModel : BaseViewModel() {
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { phoneResponseEntity -> verifySuccessfully(phoneResponseEntity) },
+                { phoneCodeResponseEntity -> verifySuccessfully(verificationCode) },
                 { error -> errorOccurs(error) })
 
     }
 
-    private fun verifySuccessfully(phoneResponseEntity: PhoneResponseEntity) {
+    private fun verifySuccessfully(verificationCode: String) {
         hideProgressDialog()
-        showToast("Success")
+        signupCodeLiveData.value = verificationCode
     }
 
     private fun errorOccurs(error: Throwable) {

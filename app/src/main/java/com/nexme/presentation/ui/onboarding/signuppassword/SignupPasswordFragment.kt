@@ -3,11 +3,13 @@ package com.nexme.presentation.ui.onboarding.signuppassword
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
 import com.nexme.presentation.model.SignupObject
 import com.nexme.presentation.ui.BaseLiveDataFragment
 import com.nexme.presentation.ui.explore.MapsActivity
+import com.nexme.presentation.ui.onboarding.login.UserObject
 import com.nexme.presentation.utils.AndroidUtil
 import kotlinx.android.synthetic.main.signup_email.*
 import kotlinx.android.synthetic.main.signup_password.*
@@ -35,6 +37,7 @@ class SignupPasswordFragment: BaseLiveDataFragment() {
     override fun getCurrentViewModel() = signupPasswordViewModel
 
     override fun subscribeObservers() {
+        signupPasswordViewModel.signupPhoneLiveData.observe(this, sigupPhoneObserver)
     }
 
     override fun getLayoutId() = R.layout.signup_password
@@ -65,9 +68,17 @@ class SignupPasswordFragment: BaseLiveDataFragment() {
 
     private fun onNextClicked() {
 
-        startActivity(Intent(getCurrentActivity(), MapsActivity::class.java))
-        getCurrentActivity().finish()
+//        startActivity(Intent(getCurrentActivity(), MapsActivity::class.java))
+//        getCurrentActivity().finish()
+
+        signupObject?.let {
+            signupPasswordViewModel.onNextClicked(it, edtPassword.text.toString().trim())
+        }
 
 
+    }
+
+    private val sigupPhoneObserver = Observer<UserObject>{
+        openHomePage()
     }
 }

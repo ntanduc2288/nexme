@@ -3,10 +3,12 @@ package com.nexme.presentation.ui.onboarding.login
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
 import com.nexme.presentation.ui.BaseLiveDataFragment
+import com.nexme.presentation.ui.NexMeApp
 import com.nexme.presentation.ui.explore.MapsActivity
 import com.nexme.presentation.utils.AndroidUtil
 import kotlinx.android.synthetic.main.login_view.*
@@ -39,6 +41,7 @@ class LoginFragment: BaseLiveDataFragment() {
         btnBack.setOnClickListener { getCurrentActivity().onBackPressed() }
         btnSignUp.setOnClickListener { getCurrentActivity().onBackPressed() }
         btnLogin.setOnClickListener { loginViewModel.onLoginClicked(edtPassword.text.toString().trim(), edtEmail.text.toString().trim()) }
+        lblForgotPassword.setOnClickListener { Toast.makeText(NexMeApp.applicationContext(), "Coming soon", Toast.LENGTH_SHORT).show() }
 
         edtEmail.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(s: Editable?) {

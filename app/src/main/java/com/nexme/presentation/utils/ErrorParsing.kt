@@ -10,13 +10,15 @@ object ErrorParsing {
         var errorMessage = NexMeApp.applicationContext().getString(R.string.something_went_wrong)
 
         if (error is HttpException) {
-            if (error.code() == 422){
-                if (error.response()?.errorBody()?.string() == "false") {
-                    errorMessage = NexMeApp.applicationContext().getString(R.string.email_already_in_use)
-                    return errorMessage
-                }
-            }
-            errorMessage = error.message()
+//            if (error.code() == CODE_422){
+//                if (error.response()?.errorBody()?.string() == "false") {
+//                    errorMessage = NexMeApp.applicationContext().getString(R.string.email_already_in_use)
+//                    return errorMessage
+//                }
+//
+//            errorMessage = error.message()
+
+            errorMessage = "Error Code:" + (error as HttpException).code()
         }
 
         return errorMessage

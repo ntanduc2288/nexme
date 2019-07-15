@@ -67,11 +67,11 @@ class SignupNameFragment: BaseLiveDataFragment() {
 
 
     private fun onNextClicked() {
-        signupObject?.firstName = edtFirstName.text.toString().trim()
-        signupObject?.lastName = edtLastName.text.toString().trim()
+        signupObject?.let {
+            it.firstName = edtFirstName.text.toString().trim()
+            it.lastName = edtLastName.text.toString().trim()
 
-        pushFragment(getCurrentActivity(), SignupEmailFragment.newInstance(signupObject!!), true)
-
-
+            pushFragment(getCurrentActivity(), SignupEmailFragment.newInstance(it), true)
+        }
     }
 }

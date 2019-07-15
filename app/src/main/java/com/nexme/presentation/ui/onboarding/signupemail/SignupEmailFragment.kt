@@ -63,13 +63,17 @@ class SignupEmailFragment: BaseLiveDataFragment() {
 
     private fun onNextClicked() {
 
-        signupEmailViewModel.onNextClicked(signupObject!!, edtEmail.text.toString().trim())
+        signupObject?.let {
+            signupEmailViewModel.onNextClicked(it, edtEmail.text.toString().trim())
+        }
+
 
 
 
     }
 
     private val emailValidObserver = Observer<SignupObject> {
+
         pushFragment(getCurrentActivity(), SignupPasswordFragment.newInstance(it), true)
     }
 }

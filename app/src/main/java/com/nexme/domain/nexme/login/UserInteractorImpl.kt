@@ -1,13 +1,12 @@
 package com.nexme.domain.nexme.login
 
-import com.google.gson.Gson
 import com.nexme.data.model.request.login.*
 import com.nexme.data.model.response.login.LoginResponseEntity
 import com.nexme.data.model.response.twilio.PhoneCodeResponseEntity
 import com.nexme.data.model.response.twilio.PhoneResponseEntity
 import com.nexme.data.services.NexMeApi
 import com.nexme.domain.mapping
-import com.nexme.presentation.manager.UserManager
+import com.nexme.presentation.manager.NexMeUserManager
 import com.nexme.presentation.ui.onboarding.login.UserObject
 import io.reactivex.Observable
 
@@ -105,7 +104,7 @@ class UserInteractorImpl : UserInteractor {
     }
 
     private fun cacheUserData(userObject: UserObject) {
-        UserManager.userObject = userObject
+        NexMeUserManager.userObject = userObject
     }
 
 }

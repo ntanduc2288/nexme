@@ -1,8 +1,12 @@
 package com.nexme.presentation.ui.account
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
+import com.nexme.presentation.manager.NexMeUserManager
 import com.nexme.presentation.ui.BaseLiveDataFragment
+import com.nexme.presentation.ui.onboarding.OnboardingActivity
+import kotlinx.android.synthetic.main.acount_layout.*
 
 class AccountFragment: BaseLiveDataFragment() {
     private lateinit var accountViewModel: AccountViewModel
@@ -25,5 +29,15 @@ class AccountFragment: BaseLiveDataFragment() {
     override fun getLayoutId() = R.layout.acount_layout
 
     override fun setupViews() {
+
+        btnSignOut.setOnClickListener { signOut()}
+
+        lblUserName.text = NexMeUserManager.userObject?.fullname + "\n" + NexMeUserManager.userObject?.email
+    }
+
+    private fun signOut(){
+        NexMeUserManager.userObject = null
+        startActivity(Intent(context, OnboardingActivity::class.java))
+        getCurrentActivity().finish()
     }
 }

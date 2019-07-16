@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import com.nexme.R
-import com.nexme.presentation.manager.UserManager
+import com.nexme.presentation.manager.NexMeUserManager
 import com.nexme.presentation.ui.BaseActivity
 import com.nexme.presentation.ui.home.HomeActivity
 import com.nexme.presentation.ui.onboarding.OnboardingActivity
@@ -29,7 +29,7 @@ class WelcomeActivity: BaseActivity() {
     }
 
     private fun openNexScreen(){
-        if (UserManager.userObject == null) {
+        if (NexMeUserManager.userObject == null) {
             startActivity(Intent(applicationContext, OnboardingActivity::class.java))
         }else {
             startActivity(Intent(applicationContext, HomeActivity::class.java))

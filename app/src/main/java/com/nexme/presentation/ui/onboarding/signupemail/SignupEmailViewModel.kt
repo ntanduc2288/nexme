@@ -24,7 +24,7 @@ class SignupEmailViewModel: BaseViewModel() {
         userInteractor.checkUID(email)
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({_isValidUid ->
+            .subscribe({
                 hideProgressDialog()
                 showToast(NexMeApp.applicationContext().getString(R.string.email_already_in_use))
 

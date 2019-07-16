@@ -50,9 +50,9 @@ class ExploreFragment: BaseLiveDataFragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        // 10398 NE 17th St. Unit 302 Bellevue, WA 98004
+        val sydney = LatLng(47.626110, -122.202280)
+        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Bellevue"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12f))
     }
 }

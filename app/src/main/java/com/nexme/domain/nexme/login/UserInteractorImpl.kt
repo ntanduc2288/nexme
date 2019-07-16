@@ -14,7 +14,7 @@ class UserInteractorImpl : UserInteractor {
 
     override fun login(password: String, email: String, isProd: Boolean): Observable<UserObject> {
         return NexMeApi.nexmeUserServices.check(email)
-            .flatMap { _isUidExist -> Observable.just(initializeUserEntity(password, email)) }
+            .flatMap { Observable.just(initializeUserEntity(password, email)) }
             .flatMap { loginRequestEntity -> NexMeApi.nexmeUserServicesDotNet.login(loginRequestEntity) }
             .map { UserLoginEntity(DeviceLoginEntity("noToken", isProd))  }
             .flatMap { NexMeApi.nexmeUserServices.updateUILogin(email, it) }

@@ -41,7 +41,7 @@ class SignupCodeViewModel : BaseViewModel() {
             .subscribeOn(Schedulers.newThread())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { _phoneCodeResponseEntity -> verifySuccessfully(verificationCode) },
+                { verifySuccessfully(verificationCode) },
                 { error -> errorOccurs(error) })
 
     }

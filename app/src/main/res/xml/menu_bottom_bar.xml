@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        icon="@drawable/ic_google"
+        id="@+id/explore"
+        title="Explore"
+        />
+
+    <tab
+        icon="@drawable/ic_google"
+        id="@+id/favorites"
+        title="Favorites"
+        />
+    <tab
+        icon="@drawable/ic_google"
+        id="@+id/history"
+        title="History"
+        />
+
+    <tab
+        icon="@drawable/ic_google"
+        id="@+id/service"
+        title="Services"
+        />
+
+    <tab
+        icon="@drawable/ic_google"
+        id="@+id/account"
+        title="My Nexme"
+        />
+</tabs>

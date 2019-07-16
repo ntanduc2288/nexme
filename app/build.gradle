@@ -104,8 +104,9 @@ dependencies {
 
     implementation 'pub.devrel:easypermissions:3.0.0'
 
-    implementation 'com.ncapdevi:frag-nav:3.2.0'
+    implementation 'com.ncapdevi:frag-nav:3.3.0'
 
+    implementation files('aars/bottom-bar-release.aar')
 }
 
 android.defaultConfig.manifestPlaceholders = [

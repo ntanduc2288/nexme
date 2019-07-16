@@ -65,6 +65,7 @@
                   android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
         >
         </activity>
+        <activity android:name=".presentation.ui.home.HomeActivity"/>
 
     </application>
 

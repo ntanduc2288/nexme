@@ -55,7 +55,7 @@ class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedL
 //        }
 
         if (mGoogleApiClient == null) {
-            mGoogleApiClient = GoogleApiClient.Builder(context!!)
+            mGoogleApiClient = GoogleApiClient.Builder(context)
                 .enableAutoManage(context as FragmentActivity /* Activity */, this /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build()
@@ -65,7 +65,7 @@ class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedL
         googleActivityLiveData.value = signInIntent
     }
 
-    fun onAuthenGoogleSuccessful(accessToken: String, email: String){
+    fun onAuthenGoogleSuccessful(accessToken: String, _email: String){
         loginSocial("google", accessToken)
     }
 

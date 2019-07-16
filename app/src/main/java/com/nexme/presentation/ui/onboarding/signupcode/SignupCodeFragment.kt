@@ -1,5 +1,6 @@
 package com.nexme.presentation.ui.onboarding.signupcode
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.telephony.PhoneNumberUtils
 import android.text.Editable
@@ -122,6 +123,7 @@ class SignupCodeFragment: BaseLiveDataFragment() {
 
     }
 
+    @SuppressLint("CheckResult")
     private fun updateResendCode(second: Int) {
 
         if (signupObject?.verificationCode != null) return
@@ -137,7 +139,7 @@ class SignupCodeFragment: BaseLiveDataFragment() {
                 val countDownTime = String.format(NexMeApp.applicationContext().getString(R.string.resend_code_in), DateUtils.convertSecondToHHMMSS(second - t))
                 lblResendCode.visibility = View.VISIBLE
                 lblResendCode.text = countDownTime
-            }, { error ->}, {
+            }, { _error ->}, {
                 completeCountdown()
             })
 

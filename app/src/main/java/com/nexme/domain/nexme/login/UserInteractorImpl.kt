@@ -1,5 +1,6 @@
 package com.nexme.domain.nexme.login
 
+import com.google.gson.Gson
 import com.nexme.data.model.request.login.*
 import com.nexme.data.model.response.login.LoginResponseEntity
 import com.nexme.data.model.response.twilio.PhoneCodeResponseEntity

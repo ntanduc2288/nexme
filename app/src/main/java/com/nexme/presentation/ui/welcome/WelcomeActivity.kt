@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import com.nexme.R
+import com.nexme.presentation.manager.UserManager
 import com.nexme.presentation.ui.BaseActivity
+import com.nexme.presentation.ui.home.HomeActivity
 import com.nexme.presentation.ui.onboarding.OnboardingActivity
 
 class WelcomeActivity: BaseActivity() {
@@ -12,17 +14,26 @@ class WelcomeActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        initViews()
+    }
+
+    private fun initViews(){
+
         val handler = Handler()
         handler.postDelayed({
             this@WelcomeActivity.runOnUiThread {
-                openOnBoarding()
+                openNexScreen()
             }
         }, 2 * 1000)
-
     }
 
-    private fun openOnBoarding(){
-        startActivity(Intent(applicationContext, OnboardingActivity::class.java))
+    private fun openNexScreen(){
+        if (UserManager.userObject == null) {
+            startActivity(Intent(applicationContext, OnboardingActivity::class.java))
+        }else {
+            startActivity(Intent(applicationContext, HomeActivity::class.java))
+        }
         finish()
     }
 }

@@ -1,6 +1,7 @@
 package com.nexme.presentation.ui.account
 
 import android.content.Intent
+import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
 import com.nexme.presentation.manager.NexMeUserManager
@@ -32,7 +33,13 @@ class AccountFragment: BaseLiveDataFragment() {
 
         btnSignOut.setOnClickListener { signOut()}
 
-        lblUserName.text = NexMeUserManager.userObject?.fullname + "\n" + NexMeUserManager.userObject?.email
+        if (NexMeUserManager.userObject != null) {
+            btnSignOut.visibility = View.VISIBLE
+            lblUserName.text = NexMeUserManager.userObject?.fullname + "\n" + NexMeUserManager.userObject?.email
+        }else {
+            btnSignOut.visibility = View.GONE
+        }
+
     }
 
     private fun signOut(){

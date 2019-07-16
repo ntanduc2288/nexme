@@ -2,6 +2,7 @@ package com.nexme.presentation.ui
 
 import android.app.Application
 import android.content.Context
+import com.nexme.R
 import com.nexme.presentation.utils.SharedPreferenceManager
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
@@ -21,14 +22,24 @@ class NexMeApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        CalligraphyConfig.initDefault(
-            CalligraphyConfig.Builder()
-                .build()
-        )
 
+        initFonts()
+
+        initSharedPreference()
+
+    }
+
+    private fun initSharedPreference() {
         SharedPreferenceManager.initialize(this)
     }
 
+    private fun initFonts() {
+        CalligraphyConfig.initDefault(
+            CalligraphyConfig.Builder()
+                .setDefaultFontPath(getString(R.string.montserrat_regular))
+                .build()
+        )
+    }
 
 
 }

@@ -101,7 +101,6 @@ class OnboardingViewModel : BaseViewModel(), GoogleApiClient.OnConnectionFailedL
 
     private fun loginSuccessfully(userObject: UserObject) {
         hideProgressDialog()
-        showToast("Successfully login")
         loginLiveData.value = userObject
     }
 

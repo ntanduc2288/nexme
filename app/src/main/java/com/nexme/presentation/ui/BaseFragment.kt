@@ -1,5 +1,6 @@
 package com.nexme.presentation.ui
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
@@ -9,14 +10,25 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import com.nexme.R
 import com.nexme.presentation.ui.dialog.PROGRESS_DIALOG_TAG
 import com.nexme.presentation.ui.dialog.ProgressDialogFragment
 import com.nexme.presentation.ui.explore.MapsActivity
+import com.nexme.presentation.ui.home.HomeActivity
 import java.lang.ref.WeakReference
 
 abstract class BaseFragment : Fragment() {
     abstract fun getLayoutId(): Int
     abstract fun setupViews()
+
+    private var mFragmentNavigation: FragmentNavigation? = null
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        if (context is FragmentNavigation) {
+            mFragmentNavigation = context
+        }
+    }
 
     private var mCurrentDialog: WeakReference<ProgressDialogFragment>? = null
 
@@ -89,7 +101,58 @@ abstract class BaseFragment : Fragment() {
     }
 
     fun openHomePage() {
-        startActivity(Intent(context, MapsActivity::class.java))
+        startActivity(Intent(context, HomeActivity::class.java))
         getCurrentActivity().finish()
     }
+
+    fun pushFragment(fragment: Fragment) {
+        mFragmentNavigation?.pushFragment(fragment)
+    }
+
+   fun pushFragment(activity: AppCompatActivity, fragment: BaseFragment, addToBackStack: Boolean){
+        val fragmentTransaction = activity.supportFragmentManager
+            .beginTransaction()
+        fragmentTransaction.replace(R.id.container, fragment)//R.id.content_frame is the layout you want to replace
+
+        if (addToBackStack) {
+            fragmentTransaction.addToBackStack(fragment.tag)
+        }
+
+        fragmentTransaction.commit()
+    }
+
+    fun backToSpecificScreen(fragmentClass: Class<*>) {
+        mFragmentNavigation?.backToSpecificScreen(fragmentClass)
+
+    }
+
+    fun popCurrentFragmentOutOfStack() {
+        mFragmentNavigation?.popCurrentFragmentOutOfStack()
+    }
+
+    fun getFragmentInStack(fragmentClass: Class<*>): Fragment? {
+        return mFragmentNavigation?.getSpecificFragmentInStack(fragmentClass)
+    }
+
+    fun clearStack() {
+        mFragmentNavigation?.clearStack()
+    }
+
+}
+
+interface FragmentNavigation {
+    fun pushFragment(fragment: Fragment)
+
+    fun popCurrentFragmentOutOfStack()
+
+    fun backToSpecificScreen(fragmentClass: Class<*>)
+
+    fun getSpecificFragmentInStack(fragmentClass: Class<*>): Fragment?
+
+    fun clearStack()
+
+    fun showBottomBar(isNeedToShowBottomBar: Boolean)
+
+    fun changeTab(tabIndex: Int)
+
 }

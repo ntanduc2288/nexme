@@ -24,7 +24,6 @@ fun mapping(loginResponseEntity: LoginResponseEntity): UserObject {
     userObject.nickName = loginResponseEntity.nickname
     userObject.agent_status = loginResponseEntity.status
     userObject.provider = loginResponseEntity.provider
-    userObject.roles = loginResponseEntity.roles
     userObject.created_at = loginResponseEntity.created_at
     return userObject
 }

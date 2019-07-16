@@ -1,6 +1,7 @@
 package com.nexme.presentation.ui.home
 
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.ncapdevi.fragnav.FragNavController
@@ -50,6 +51,11 @@ class HomeActivity : BaseActivity(), FragNavController.RootFragmentListener, Fra
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initBottomTabs(savedInstanceState)
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        fragNavController.onSaveInstanceState(outState)
     }
 
     private fun initBottomTabs(savedInstanceState: Bundle?) {

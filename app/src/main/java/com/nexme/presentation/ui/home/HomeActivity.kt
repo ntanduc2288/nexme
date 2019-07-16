@@ -62,7 +62,7 @@ class HomeActivity : BaseActivity(), FragNavController.RootFragmentListener, Fra
         fragNavController.transactionListener = this
         fragNavController.rootFragmentListener = this
         fragNavController.createEager = true
-//        fragNavController.fragmentHideStrategy = FragNavController.DETACH_ON_NAVIGATE_HIDE_ON_SWITCH
+        fragNavController.fragmentHideStrategy = FragNavController.DETACH_ON_NAVIGATE_HIDE_ON_SWITCH
         fragNavController.navigationStrategy = UniqueTabHistoryStrategy(object : FragNavSwitchController {
             override fun switchTab(index: Int, transactionOptions: FragNavTransactionOptions?) { changeTab(index) }
         })

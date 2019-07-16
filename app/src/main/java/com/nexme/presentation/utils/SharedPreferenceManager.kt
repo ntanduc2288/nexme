@@ -24,17 +24,16 @@ object SharedPreferenceManager {
         set(value) = presf.edit().putBoolean(NEED_TO_SHOW_TOUR, value).apply()
 
     var userObject: UserObject?
-    get() {
-        presf.getString(USER_OBJECT, null)?.let {
-            return gson.fromJson(it, UserObject::class.java)
-        }
+        get() {
+            presf.getString(USER_OBJECT, null)?.let {
+                return gson.fromJson(it, UserObject::class.java)
+            }
 
-        return null
-    }
-    set(value) {
-        value?.let {
-            val userObjectStr = gson.toJson(it)
-            presf.edit().putString(USER_OBJECT, userObjectStr).apply()
+            return null
         }
-    }
+        set(value) {
+            var userObjectStr = gson.toJson(value)
+            presf.edit().putString(USER_OBJECT, userObjectStr ?: "").apply()
+
+        }
 }

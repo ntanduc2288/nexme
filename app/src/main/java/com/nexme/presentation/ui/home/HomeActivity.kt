@@ -10,6 +10,11 @@ import com.ncapdevi.fragnav.tabhistory.UniqueTabHistoryStrategy
 import com.nexme.R
 import com.nexme.presentation.ui.BaseActivity
 import com.nexme.presentation.ui.FragmentNavigation
+import com.nexme.presentation.ui.account.AccountFragment
+import com.nexme.presentation.ui.explore.ExploreFragment
+import com.nexme.presentation.ui.explore.FavoritesFragment
+import com.nexme.presentation.ui.explore.HistoryFragment
+import com.nexme.presentation.ui.explore.ServicesFragment
 import com.nexme.presentation.ui.onboarding.tour.TourFragment
 import kotlinx.android.synthetic.main.home_activity.*
 
@@ -33,11 +38,11 @@ class HomeActivity : BaseActivity(), FragNavController.RootFragmentListener, Fra
 
     override fun getRootFragment(index: Int): Fragment {
         when (index) {
-            INDEX_EXPLORE -> return TourFragment.newInstance()
-            INDEX_FAVORITES -> return TourFragment.newInstance()
-            INDEX_HISTORY -> return TourFragment.newInstance()
-            INDEX_SERVICES -> return TourFragment.newInstance()
-            INDEX_MY_NEXME -> return TourFragment.newInstance()
+            INDEX_EXPLORE -> return ExploreFragment.newInstance()
+            INDEX_FAVORITES -> return FavoritesFragment.newInstance()
+            INDEX_HISTORY -> return HistoryFragment.newInstance()
+            INDEX_SERVICES -> return ServicesFragment.newInstance()
+            INDEX_MY_NEXME -> return AccountFragment.newInstance()
         }
         throw IllegalStateException("Need to send an index that we know")
     }

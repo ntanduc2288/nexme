@@ -4,18 +4,10 @@ import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
-import com.nexme.presentation.model.SignupObject
 import com.nexme.presentation.ui.BaseLiveDataFragment
-import com.nexme.presentation.ui.explore.MapsActivity
 import com.nexme.presentation.ui.onboarding.login.LoginFragment
 import com.nexme.presentation.ui.onboarding.login.UserObject
-import com.nexme.presentation.ui.onboarding.signupcode.SignupCodeFragment
-import com.nexme.presentation.ui.onboarding.signupemail.SignupEmailFragment
 import com.nexme.presentation.ui.onboarding.signupmobile.SignupMobileFragment
-import com.nexme.presentation.ui.onboarding.signupname.SignupNameFragment
-import com.nexme.presentation.ui.onboarding.signuppassword.SignupPasswordFragment
-import com.nexme.presentation.ui.onboarding.tour.TourFragment
-import com.nexme.presentation.utils.pushFragment
 import kotlinx.android.synthetic.main.onboarding_view.*
 
 class OnBoardingFragment: BaseLiveDataFragment() {
@@ -51,11 +43,11 @@ class OnBoardingFragment: BaseLiveDataFragment() {
 
         btnFacebook.setOnClickListener { onboardingViewModel.onFacebookClicked() }
         btnSigUpWithPhone.setOnClickListener { openSignupMobilePage() }
-        btnSkip.setOnClickListener { openHomePage() }
+        btnSkip.setOnClickListener { gotoNextPageAfterSignUpOrLogin() }
     }
 
     private val loginSuccessfullyObserver = Observer<UserObject> {
-        openHomePage()
+        gotoNextPageAfterSignUpOrLogin()
     }
 
     private val openGoogleActivityObserver = Observer<Intent> {

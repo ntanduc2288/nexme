@@ -15,6 +15,8 @@ import com.nexme.presentation.ui.dialog.PROGRESS_DIALOG_TAG
 import com.nexme.presentation.ui.dialog.ProgressDialogFragment
 import com.nexme.presentation.ui.explore.MapsActivity
 import com.nexme.presentation.ui.home.HomeActivity
+import com.nexme.presentation.ui.onboarding.tour.TourActivity
+import com.nexme.presentation.utils.SharedPreferenceManager
 import java.lang.ref.WeakReference
 
 abstract class BaseFragment : Fragment() {
@@ -100,8 +102,13 @@ abstract class BaseFragment : Fragment() {
         return activity as AppCompatActivity
     }
 
-    fun openHomePage() {
-        startActivity(Intent(context, HomeActivity::class.java))
+    fun gotoNextPageAfterSignUpOrLogin() {
+        if (SharedPreferenceManager.needToShowTour) {
+            SharedPreferenceManager.needToShowTour = false
+            startActivity(Intent(context, TourActivity::class.java))
+        }else {
+            startActivity(Intent(context, HomeActivity::class.java))
+        }
         getCurrentActivity().finish()
     }
 

@@ -1,6 +1,5 @@
 package com.nexme.presentation.ui.onboarding.login
 
-import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
@@ -9,7 +8,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
 import com.nexme.presentation.ui.BaseLiveDataFragment
 import com.nexme.presentation.ui.NexMeApp
-import com.nexme.presentation.ui.explore.MapsActivity
 import com.nexme.presentation.utils.AndroidUtil
 import kotlinx.android.synthetic.main.login_view.*
 
@@ -37,7 +35,7 @@ class LoginFragment: BaseLiveDataFragment() {
         edtEmail.setText("ntanduc2288@gmail.com")
         edtPassword.setText("NguyenTanDuc2288")
 
-        btnSkip.setOnClickListener { openHomePage() }
+        btnSkip.setOnClickListener { gotoNextPageAfterSignUpOrLogin() }
         btnBack.setOnClickListener { getCurrentActivity().onBackPressed() }
         btnSignUp.setOnClickListener { getCurrentActivity().onBackPressed() }
         btnLogin.setOnClickListener { loginViewModel.onLoginClicked(edtPassword.text.toString().trim(), edtEmail.text.toString().trim()) }
@@ -72,7 +70,7 @@ class LoginFragment: BaseLiveDataFragment() {
     }
 
     private val loginSuccessfullyObserver = Observer<UserObject> {
-        openHomePage()
+        gotoNextPageAfterSignUpOrLogin()
     }
 
 }

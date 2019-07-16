@@ -33,13 +33,13 @@ class TourFragment: BaseLiveDataFragment() {
 
         btnNext.setOnClickListener { onNextClicked() }
 
-        btnSkip.setOnClickListener { openHomePage() }
+        btnSkip.setOnClickListener { gotoNextPageAfterSignUpOrLogin() }
     }
 
     private fun onNextClicked() {
         vp.adapter?.let {
             if (vp.currentItem == it.count - 1){
-                openHomePage()
+                gotoNextPageAfterSignUpOrLogin()
             }
         }
 

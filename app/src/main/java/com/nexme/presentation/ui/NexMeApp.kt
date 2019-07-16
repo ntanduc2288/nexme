@@ -2,6 +2,7 @@ package com.nexme.presentation.ui
 
 import android.app.Application
 import android.content.Context
+import com.nexme.presentation.utils.SharedPreferenceManager
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 
 class NexMeApp: Application() {
@@ -25,7 +26,7 @@ class NexMeApp: Application() {
                 .build()
         )
 
-        System.setProperty("http.User-Agent", "testing")
+        SharedPreferenceManager.initialize(this)
     }
 
 

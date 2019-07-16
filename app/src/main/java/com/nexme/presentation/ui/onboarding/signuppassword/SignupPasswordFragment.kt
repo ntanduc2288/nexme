@@ -1,6 +1,5 @@
 package com.nexme.presentation.ui.onboarding.signuppassword
 
-import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.lifecycle.Observer
@@ -8,10 +7,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.nexme.R
 import com.nexme.presentation.model.SignupObject
 import com.nexme.presentation.ui.BaseLiveDataFragment
-import com.nexme.presentation.ui.explore.MapsActivity
 import com.nexme.presentation.ui.onboarding.login.UserObject
 import com.nexme.presentation.utils.AndroidUtil
-import kotlinx.android.synthetic.main.signup_email.*
 import kotlinx.android.synthetic.main.signup_password.*
 import kotlinx.android.synthetic.main.signup_password.btnBack
 import kotlinx.android.synthetic.main.signup_password.btnNext
@@ -79,6 +76,6 @@ class SignupPasswordFragment: BaseLiveDataFragment() {
     }
 
     private val sigupPhoneObserver = Observer<UserObject>{
-        openHomePage()
+        gotoNextPageAfterSignUpOrLogin()
     }
 }
